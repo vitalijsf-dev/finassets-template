@@ -3,72 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Title | Finassets</title>
+  <title>Low Fee Crypto Payment Gateway for eCommerce | B2B Payments</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Questrial&display=swap" rel="stylesheet">
-
-  <!-- Real CSS files from finassets.io -->
   <link href="https://www.finassets.io/assets/c0f65be4/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://www.finassets.io/assets/ac71cb6c/css/src/fn-theme.css" rel="stylesheet">
   <link href="https://www.finassets.io/assets/ac71cb6c/css/src/tw-styles.css" rel="stylesheet">
   <link href="https://www.finassets.io/assets/ac71cb6c/css/aos.css" rel="stylesheet">
   <link href="https://www.finassets.io/assets/ac71cb6c/css/src/main.css" rel="stylesheet">
-
   <style>
-    /* cyrillic-ext */
-    @font-face {
-      font-family: "Inter var";
-      font-style: normal;
-      font-weight: 100 900;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcvvYwYZ8UA3J58.woff2) format('woff2');
-      unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-    }
-    /* cyrillic */
-    @font-face {
-      font-family: "Inter var";
-      font-style: normal;
-      font-weight: 100 900;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcvmYwYZ8UA3J58.woff2) format('woff2');
-      unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-    }
-    /* latin-ext */
-    @font-face {
-      font-family: "Inter var";
-      font-style: normal;
-      font-weight: 100 900;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcvtYwYZ8UA3J58.woff2) format('woff2');
-      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-    }
-    /* latin */
-    @font-face {
-      font-family: "Inter var";
-      font-style: normal;
-      font-weight: 100 900;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ8UA3.woff2) format('woff2');
-      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-    }
-    /* Questrial */
-    @font-face {
-      font-family: "Questrial";
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/questrial/v19/QdVUSTchPBm7nuUeVf70viFluW44JQ.woff2) format('woff2');
-      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-    }
-    @font-face {
-      font-family: "Questrial";
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/questrial/v19/QdVUSTchPBm7nuUeVf70sCFluW44JUcz.woff2) format('woff2');
-      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-    }
+    @font-face { font-family: "Inter var"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcvvYwYZ8UA3J58.woff2) format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+    @font-face { font-family: "Inter var"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcvmYwYZ8UA3J58.woff2) format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+    @font-face { font-family: "Inter var"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcvtYwYZ8UA3J58.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+    @font-face { font-family: "Inter var"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ8UA3.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Questrial"; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/questrial/v19/QdVUSTchPBm7nuUeVf70viFluW44JQ.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: "Questrial"; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/questrial/v19/QdVUSTchPBm7nuUeVf70sCFluW44JUcz.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
   </style>
 </head>
 <body>
@@ -76,7 +26,6 @@
     <div class="container-fluid p-0">
       <div class="mil-wrapper">
 
-  <!-- ===== HEADER (real structure from finassets.io) ===== -->
   <header class="mil-top-panel">
     <div class="container-xl d-flex justify-content-between align-items-center">
       <a class="mil-logo" href="#">
@@ -119,7 +68,7 @@
     </div>
   </header>
 
-  <!-- ===== HERO BANNER (real structure from finassets.io) ===== -->
+  <!-- ===== HERO BANNER ===== -->
   <div class="mil-banner mil-dissolve flex-col">
     <div class="container">
       <div class="row flex-sm-row-reverse justify-content-between align-items-center mb-col-reverse">
@@ -132,14 +81,14 @@
           </div>
         </div>
         <div class="col-xl-7">
-          <h1 class="mil-mb-30 fw-semibold text-gradient-1 text-center-on-iPad" data-aos="fade-up-scale">Your Landing Page<br>Headline Goes Here</h1>
+          <h1 class="mil-mb-30 fw-semibold text-gradient-1 text-center-on-iPad" data-aos="fade-up-scale">Low-Fee B2B Crypto Payment Gateway for eCommerce</h1>
           <ul class="mil-list-2 mil-type-2 benefits-two-columns index-banner-two-cols mil-mb-20 block-none">
-            <li data-aos="fade-up-scale"><div><span class="h6">Feature One</span></div></li>
-            <li data-aos="fade-up-scale"><div><span class="h6">Feature Two</span></div></li>
-            <li data-aos="fade-up-scale"><div><span class="h6">Feature Three</span></div></li>
-            <li data-aos="fade-up-scale"><div><span class="h6">Feature Four</span></div></li>
-            <li data-aos="fade-up-scale"><div><span class="h6">Feature Five</span></div></li>
-            <li data-aos="fade-up-scale"><div><span class="h6">Feature Six</span></div></li>
+            <li data-aos="fade-up-scale"><div><span class="h6">Free Registration</span></div></li>
+            <li data-aos="fade-up-scale"><div><span class="h6">Easy Integration</span></div></li>
+            <li data-aos="fade-up-scale"><div><span class="h6">Personal Manager</span></div></li>
+            <li data-aos="fade-up-scale"><div><span class="h6">Progressive Fee Reduction Down to 0.20%</span></div></li>
+            <li data-aos="fade-up-scale"><div><span class="h6">TRON Energy Saving System</span></div></li>
+            <li data-aos="fade-up-scale"><div><span class="h6">Trusted Service Since 2021</span></div></li>
           </ul>
           <div class="mil-buttons-frame mil-mb-40" data-aos="fade-up-scale">
             <a href="#" class="mil-btn mil-md mil-add-arrow">Try Demo</a>
@@ -149,69 +98,69 @@
     </div>
   </div>
 
-  <!-- ===== FEATURE SECTION ===== -->
+  <!-- ===== FEATURE SECTION: Crypto Payment Solutions ===== -->
   <div class="mil-features mil-mt-60">
     <div class="container">
       <div class="row flex-sm-row-reverse justify-content-between align-items-center">
         <div class="col-xl-6 mil-mb-80">
-          <h2 class="mil-mb-30">Feature Section Title</h2>
-          <p class="mil-text-m mil-soft font-questrial mil-mb-60">Description of this feature section explaining the key benefits and functionality offered to businesses.</p>
+          <h2 class="mil-mb-30">Crypto Payment Solutions</h2>
+          <p class="mil-text-m mil-soft font-questrial mil-mb-60">Unlock a seamless payment experience with our flexible cryptocurrency payment processor</p>
           <ul class="mil-list-2 mil-type-2">
             <li data-aos="fade-up">
               <div>
-                <h3 class="h5 mil-mb-15">Benefit Title One</h3>
-                <p class="mil-text-m mil-soft font-questrial">Description of the first benefit explaining the value.</p>
+                <h3 class="h5 mil-mb-15">Payment button</h3>
+                <p class="mil-text-m mil-soft font-questrial">Add a customizable payment button to your website to enable customers to pay instantly with cryptocurrency. It's a simple solution for accepting cryptocurrency payments on your website.</p>
               </div>
             </li>
             <li data-aos="fade-up">
               <div>
-                <h3 class="h5 mil-mb-15">Benefit Title Two</h3>
-                <p class="mil-text-m mil-soft font-questrial">Description of the second benefit explaining the value.</p>
+                <h3 class="h5 mil-mb-15">Crypto Invoicing</h3>
+                <p class="mil-text-m mil-soft font-questrial">Finassets provides an intuitive system for creating crypto invoices, allowing your business to get paid in cryptocurrency with ease. Create a payment link or QR code in seconds.</p>
               </div>
             </li>
             <li data-aos="fade-up">
               <div>
-                <h3 class="h5 mil-mb-15">Benefit Title Three</h3>
-                <p class="mil-text-m mil-soft font-questrial">Description of the third benefit explaining the value.</p>
+                <h3 class="h5 mil-mb-15">API Integration</h3>
+                <p class="mil-text-m mil-soft font-questrial">With Finassets API, you can easily integrate crypto payment solutions into your existing website or platform, automating transactions for a smooth user experience.</p>
               </div>
             </li>
           </ul>
         </div>
         <div class="col-xl-6 mil-mb-80">
           <div class="relative">
-            <img src="https://via.placeholder.com/600x450/F1F5F9/898D96?text=Feature+Image" alt="Feature" style="width: 100%; border-radius: 20px;">
+            <img src="https://www.finassets.io/assets/ac71cb6c/images/newHomePage/home/coins.jpg" alt="Crypto Payment Solutions" style="width: 100%; border-radius: 20px;">
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===== ICON BOXES / HOW IT WORKS ===== -->
+  <!-- ===== HOW IT WORKS ===== -->
   <div class="icon-boxes mil-p-50-50">
     <div class="container">
       <div class="mil-mb-60 justify-content-center d-flex">
-        <h2 class="col-xl-8 text-center">How It Works</h2>
+        <h2 class="col-xl-8 text-center">Your Guide to Setting Up Crypto Payments with Finassets</h2>
       </div>
       <div class="row">
         <div class="col-xl-4 mil-mb-30">
           <div class="mil-icon-box mil-with-bg mil-center h-full">
-            <img src="https://via.placeholder.com/64x64/FF6D00/FFFFFF?text=1" alt="Step 1" class="mil-mb-30">
-            <h3 class="h5 mil-mb-20">Step One Title</h3>
-            <p class="mil-text-s mil-soft font-questrial">Description of step one explaining what the user needs to do.</p>
+            <img src="https://www.finassets.io/assets/ac71cb6c/images/newHomePage/svg/baner-1.svg" alt="Step 1" class="mil-mb-30">
+            <h3 class="h5 mil-mb-20">Sign Up & Complete Verification</h3>
+            <p class="mil-text-s mil-soft font-questrial">Create your Finassets account and complete the verification process to start accepting crypto payments.</p>
           </div>
         </div>
         <div class="col-xl-4 mil-mb-30">
           <div class="mil-icon-box mil-with-bg mil-center h-full">
-            <img src="https://via.placeholder.com/64x64/FF6D00/FFFFFF?text=2" alt="Step 2" class="mil-mb-30">
-            <h3 class="h5 mil-mb-20">Step Two Title</h3>
-            <p class="mil-text-s mil-soft font-questrial">Description of step two explaining what happens next.</p>
+            <img src="https://www.finassets.io/assets/ac71cb6c/images/newHomePage/svg/baner-2.svg" alt="Step 2" class="mil-mb-30">
+            <h3 class="h5 mil-mb-20">Access Account & Integrate Service</h3>
+            <p class="mil-text-s mil-soft font-questrial">Log into your account, choose your preferred integration method, and connect Finassets to your website or platform.</p>
           </div>
         </div>
         <div class="col-xl-4 mil-mb-30">
           <div class="mil-icon-box mil-with-bg mil-center h-full">
-            <img src="https://via.placeholder.com/64x64/FF6D00/FFFFFF?text=3" alt="Step 3" class="mil-mb-30">
-            <h3 class="h5 mil-mb-20">Step Three Title</h3>
-            <p class="mil-text-s mil-soft font-questrial">Description of step three with the final outcome.</p>
+            <img src="https://www.finassets.io/assets/ac71cb6c/images/newHomePage/svg/baner-3.svg" alt="Step 3" class="mil-mb-30">
+            <h3 class="h5 mil-mb-20">Start Accepting Crypto Payments</h3>
+            <p class="mil-text-s mil-soft font-questrial">Begin receiving cryptocurrency payments from your customers with low fees and instant processing.</p>
           </div>
         </div>
       </div>
@@ -223,30 +172,26 @@
     </div>
   </div>
 
-  <!-- ===== CTA SECTION (matching original structure) ===== -->
+  <!-- ===== CTA SECTION ===== -->
   <div class="mil-out-frame mil-p-80-80 bg-image">
     <div class="row align-items-center justify-content-center">
       <div class="col-xl-6 mil-mb-60 justify-content-center flex-col">
-        <div class="h2 text-center" data-aos="fade-up">Ready to Get Started?</div>
+        <div class="h2 text-center" data-aos="fade-up">The higher the volume, the lower the fee.</div>
         <div class="d-flex justify-content-center">
           <div class="col-xl-8 mil-mt-30">
-            <p class="mil-text-m mil-soft font-questrial text-center">Join thousands of businesses already using Finassets for crypto payments.</p>
+            <p class="mil-text-m mil-soft font-questrial text-center">Our tiered fee structure is designed to benefit your business, with fees ranging</p>
           </div>
         </div>
       </div>
     </div>
     <div class="d-flex justify-content-between flex-column flex-sm-row gap-4 mil-mb-30">
       <div class="flex-column d-flex align-items-center align-items-sm-start">
-        <h3 class="h5 mil-mb-20">Fast Setup</h3>
-        <p class="mil-text-s mil-soft font-questrial">Get started in minutes with our simple onboarding process.</p>
+        <span class="h5">Expected Turnover</span>
+        <span class="mil-soft">0 USD</span>
       </div>
       <div class="flex-column d-flex align-items-center align-items-sm-start">
-        <h3 class="h5 mil-mb-20">Low Fees</h3>
-        <p class="mil-text-s mil-soft font-questrial">Enjoy competitive rates with transparent pricing.</p>
-      </div>
-      <div class="flex-column d-flex align-items-center align-items-sm-start">
-        <h3 class="h5 mil-mb-20">24/7 Support</h3>
-        <p class="mil-text-s mil-soft font-questrial">Our team is always available to help you succeed.</p>
+        <span class="h5">Expected monthly Fees</span>
+        <span class="mil-soft">0.40% NEW</span>
       </div>
     </div>
   </div>
@@ -256,41 +201,35 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-xl-8">
-          <h2 class="text-center mil-mb-60">Frequently Asked Questions</h2>
+          <h2 class="text-center mil-mb-60">Frequently asked Questions About Finassets Crypto Gateway</h2>
           <div class="accordion faq-accordion" id="faqAccordion">
             <div class="accordion-item">
               <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                  Question one goes here?
-                </button>
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">What is Finassets.io?</button>
               </h2>
               <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                  <p>Answer to the first question with all the relevant details and information.</p>
+                  <p>Finassets.io is a trusted low fee crypto payment gateway and processor that enables businesses to accept, process, and convert cryptocurrency payments securely and efficiently. Since 2021, we have been providing reliable crypto processing services for B2B businesses and websites.</p>
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                  Question two goes here?
-                </button>
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Why Is Finassets.io the Best Choice for Crypto Payment Solutions?</button>
               </h2>
               <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                  <p>Answer to the second question with detailed explanation.</p>
+                  <p>Finassets.io offers low fees with volume-based rates from 0.40% down to 0.20%, instant conversion from crypto to fiat, mass payouts for bulk cryptocurrency payments, and easy API integration with comprehensive documentation.</p>
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                  Question three goes here?
-                </button>
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">How Do I Start Accepting Crypto Payments?</button>
               </h2>
               <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                  <p>Answer to the third question.</p>
+                  <p>Getting started is simple: sign up for a Finassets account, complete the verification process, choose your preferred integration method (API, payment button, or invoicing), and start accepting crypto payments from your customers.</p>
                 </div>
               </div>
             </div>
@@ -342,20 +281,13 @@
           </ul>
           <h4 class="h6 mil-mb-60" style="margin-top: 30px;">Contact Us</h4>
           <div class="d-flex align-items-center flex-nowrap footer-social">
-            <a href="#" title="X (Twitter)">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="#" title="LinkedIn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="#" title="Telegram">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-            </a>
+            <a href="#" title="X (Twitter)"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" title="Telegram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
           </div>
           <a href="mailto:info@finassets.io" style="color: #FF6D00; display: block; margin-top: 15px; font-size: 18px;">info@finassets.io</a>
         </div>
       </div>
-
       <div class="mil-footer-bottom">
         <div class="row">
           <div class="col-xl-12">
@@ -371,16 +303,14 @@
     </div>
   </footer>
 
-      </div><!-- /.mil-wrapper -->
-    </div><!-- /.container-fluid -->
-  </div><!-- /.main-container -->
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
-
-    // Header scroll behavior (same as live site)
     window.addEventListener('scroll', function() {
       const header = document.querySelector('.mil-top-panel');
       if (window.scrollY > 50) {
