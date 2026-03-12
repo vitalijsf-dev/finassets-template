@@ -65,6 +65,17 @@
       src: url(https://fonts.gstatic.com/s/questrial/v19/QdVUSTchPBm7nuUeVf70sCFluW44JUcz.woff2) format('woff2');
       unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
     }
+
+    /* Custom AOS animation: fade-up-scale */
+    [data-aos="fade-up-scale"] {
+      opacity: 0;
+      transform: scale(0.98) translateY(50px);
+      transition-property: opacity, transform;
+    }
+    [data-aos="fade-up-scale"].aos-animate {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
   </style>
 </head>
 <body>
