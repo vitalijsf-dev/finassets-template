@@ -17,7 +17,104 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
   <style>
-    @font-face {
+
+    /* Password Protection */
+    #password-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Inter var", "Inter", sans-serif;
+    }
+    #password-overlay.hidden { display: none; }
+    .password-box {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 50px 40px;
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .password-box img {
+      height: 36px;
+      margin-bottom: 30px;
+    }
+    .password-box h2 {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+    }
+    .password-box p {
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      margin: 0 0 30px 0;
+    }
+    .password-input-wrap {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .password-input-wrap input {
+      width: 100%;
+      padding: 14px 50px 14px 18px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 16px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+    .password-input-wrap input:focus {
+      border-color: #e8630a;
+    }
+    .password-input-wrap input::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+    .password-input-wrap .toggle-eye {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 4px;
+    }
+    .password-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #e8630a;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.1s;
+    }
+    .password-btn:hover { background: #d55a08; }
+    .password-btn:active { transform: scale(0.98); }
+    .password-error {
+      color: #ff6b6b;
+      font-size: 13px;
+      margin-top: 12px;
+      min-height: 20px;
+    }
+    .mil-wrapper { display: none; }
+    .mil-wrapper.unlocked { display: block !important; }
+      @font-face {
       font-family: "Inter var";
       font-style: normal;
       font-weight: 100 900;
@@ -89,6 +186,23 @@
     </style>
 </head>
 <body>
+
+  <!-- Password Protection Overlay -->
+  <div id="password-overlay">
+    <div class="password-box">
+      <img src="https://www.finassets.io/assets/ac71cb6c/images/src/FA-Logo-vector.svg" alt="Finassets" onerror="this.style.display='none'">
+      <h2>Access Restricted</h2>
+      <p>Enter password to view this page</p>
+      <form id="password-form" onsubmit="return checkPassword(event)">
+        <div class="password-input-wrap">
+          <input type="password" id="password-input" placeholder="Password" autocomplete="off" autofocus>
+          <button type="button" class="toggle-eye" onclick="toggleEye()">&#128065;</button>
+        </div>
+        <button type="submit" class="password-btn">Enter</button>
+      </form>
+      <div class="password-error" id="password-error"></div>
+    </div>
+  </div>
 
 <div class="container-fluid p-0 main-container">
   <div class="container-fluid p-0">
@@ -321,7 +435,7 @@
               </div>
               <input type="range" min="0" max="100" value="0" class="custom-range mil-mb-30">
             </div>
-            <p class="mil-text-ml fw-semibold text-center inter">From 0.40 % to 0.20 % â new lower pricing.</p>
+            <p class="mil-text-ml fw-semibold text-center inter">From 0.40 % to 0.20 % Ã¢ÂÂ new lower pricing.</p>
           </div>
         </div>
       </div>
@@ -430,7 +544,7 @@
               <div class="feedback-slide">
                 <blockquote class="mil-with-bg">
                   <svg width="38" height="30" viewBox="0 0 38 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.024 0C3.588 0 0 3.588 0 8.024v5.345c0 4.436 3.588 8.024 8.024 8.024h1.393c-.32 3.792-2.132 6.424-5.597 8.107l-.713.346 1.03.154c.163.024.344.037.542.037 6.71 0 13.937-4.72 13.937-14.195V8.024C18.616 3.588 15.028 0 10.592 0H8.024z" fill="#FF6D00"></path><path d="M27.432 0c-4.436 0-8.024 3.588-8.024 8.024v5.345c0 4.436 3.588 8.024 8.024 8.024h1.393c-.32 3.792-2.132 6.424-5.597 8.107l-.713.346 1.03.154c.163.024.344.037.542.037 6.71 0 13.937-4.72 13.937-14.195V8.024C38.024 3.588 34.436 0 30 0h-2.568z" fill="#FF6D00"></path></svg>
-                  <p class="mil-text-m mil-mb-30 font-questrial" data-aos="fade-up">We can confidently say that we are very satisfied with the service provided by FinAssets.io! The platform offers a seamless way to accept cryptocurrency payments on a website, along with an intuitive invoicing module for billing partners. The transaction fees are a pleasant surprise as they automatically decrease based on turnover. We would also like to highlight the customer support â it operates 24/7 and resolves any issues quickly. Overall, an excellent solution for businesses!</p>
+                  <p class="mil-text-m mil-mb-30 font-questrial" data-aos="fade-up">We can confidently say that we are very satisfied with the service provided by FinAssets.io! The platform offers a seamless way to accept cryptocurrency payments on a website, along with an intuitive invoicing module for billing partners. The transaction fees are a pleasant surprise as they automatically decrease based on turnover. We would also like to highlight the customer support Ã¢ÂÂ it operates 24/7 and resolves any issues quickly. Overall, an excellent solution for businesses!</p>
                   <div class="mil-customer">
                     <img src="https://www.finassets.io/assets/ac71cb6c/images/newHomePage/ZenCasino.jpg" alt="ZenCasino logo">
                     <div class="h6 mb-0" data-aos="fade-up">ZenCasino, CFO, Jana Casa</div>
@@ -519,10 +633,10 @@
                     <div class="accordion-body">
                       Finassets.io offers:
                       <ul class="mt-3">
-                        <li><b>Low fees â </b>Volume-based rates from 0.40% down to 0.20%</li>
-                        <li><b>Instant conversion â </b>Convert crypto to fiat instantly</li>
-                        <li><b>Mass payouts â </b>Easily send bulk cryptocurrency payments to multiple recipients in a single batch</li>
-                        <li><b>Easy API integration â </b>Comprehensive documentation for seamless setup</li>
+                        <li><b>Low fees Ã¢ÂÂ </b>Volume-based rates from 0.40% down to 0.20%</li>
+                        <li><b>Instant conversion Ã¢ÂÂ </b>Convert crypto to fiat instantly</li>
+                        <li><b>Mass payouts Ã¢ÂÂ </b>Easily send bulk cryptocurrency payments to multiple recipients in a single batch</li>
+                        <li><b>Easy API integration Ã¢ÂÂ </b>Comprehensive documentation for seamless setup</li>
                       </ul>
                     </div>
                   </div>
@@ -725,5 +839,54 @@
     });
   });
 </script>
+
+  <script>
+    // SHA-256 hash of the correct password
+    const CORRECT_HASH = 'f802e99a232b31d7ef80a3d79012fd1d3f445e39a24582783ef99173e56c577c';
+    
+    async function sha256(text) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    
+    // Pre-compute hash on load
+    (async () => {
+      const hash = await sha256('finassets777!');
+      window._correctHash = hash;
+    })();
+    
+    async function checkPassword(e) {
+      e.preventDefault();
+      const input = document.getElementById('password-input').value;
+      const inputHash = await sha256(input);
+      
+      if (inputHash === window._correctHash) {
+        document.getElementById('password-overlay').classList.add('hidden');
+        document.querySelector('.mil-wrapper').classList.add('unlocked');
+        sessionStorage.setItem('fa_auth', 'true');
+      } else {
+        const errEl = document.getElementById('password-error');
+        errEl.textContent = 'Incorrect password';
+        document.getElementById('password-input').value = '';
+        document.getElementById('password-input').focus();
+        setTimeout(() => { errEl.textContent = ''; }, 3000);
+      }
+      return false;
+    }
+    
+    function toggleEye() {
+      const inp = document.getElementById('password-input');
+      inp.type = inp.type === 'password' ? 'text' : 'password';
+    }
+    
+    // Check if already authenticated in this session
+    if (sessionStorage.getItem('fa_auth') === 'true') {
+      document.getElementById('password-overlay').classList.add('hidden');
+      document.querySelector('.mil-wrapper').classList.add('unlocked');
+    }
+  </script>
 </body>
 </html>
