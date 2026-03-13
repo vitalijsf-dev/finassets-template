@@ -130,8 +130,8 @@
     /* Steps Section */
     .steps-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 50px;
       margin: 40px 0;
       position: relative;
     }
@@ -151,24 +151,25 @@
     }
     .step-title {
       font-family: "Inter var", ui-sans-serif, system-ui, sans-serif;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       color: #1E293B;
       margin-bottom: 12px;
     }
     .step-description {
       font-family: "Questrial", sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       color: #898D96;
-      line-height: 1.5;
+      line-height: 1.6;
     }
     .step-arrow {
       position: absolute;
-      top: 50%;
-      right: -40px;
+      top: 35%;
+      right: -35px;
       transform: translateY(-50%);
       font-size: 24px;
-      color: #FF6D00;
+      color: #898D96;
+      z-index: 2;
     }
     .step-box:last-child .step-arrow {
       display: none;
@@ -609,7 +610,7 @@
         <div class="container">
           <div class="text-center mb-5" data-aos="fade-up">
             <h2 class="h2 fw-semibold mb-3">How Crypto Checkout Works</h2>
-            <p style="font-family: 'Questrial', sans-serif; font-size: 16px; color: #898D96; max-width: 600px; margin: 0 auto;">Accepting cryptocurrency payments with Finassets is simple and efficient. Our crypto checkout system integrates easily into your existing website or application.</p>
+            <p style="font-family: 'Questrial', sans-serif; font-size: 18px; color: #898D96; max-width: 600px; margin: 0 auto;">Accepting cryptocurrency payments with Finassets is simple and efficient. Our crypto checkout system integrates easily into your existing website or application.</p>
           </div>
 
           <div class="steps-container" data-aos="fade-up">
@@ -1107,6 +1108,7 @@
 </script>
 </body>
 </html>
+ 
  
  
  
