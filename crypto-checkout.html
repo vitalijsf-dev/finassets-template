@@ -177,40 +177,28 @@
     /* Features Grid */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px 30px;
       margin: 40px 0;
     }
-    .feature-box {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      padding: 30px;
-    }
-    .feature-icon {
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, #FF6D00, #FF9E00);
-      border-radius: 10px;
+    .feature-item {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      color: #FFFFFF;
-      font-size: 24px;
-      margin-bottom: 15px;
+      text-align: center;
+      gap: 12px;
     }
-    .feature-title {
+    .feature-item img {
+      width: 75px;
+      height: 75px;
+      flex-shrink: 0;
+    }
+    .feature-item span {
       font-family: "Inter var", ui-sans-serif, system-ui, sans-serif;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 500;
       color: #1E293B;
-      margin-bottom: 10px;
-    }
-    .feature-desc {
-      font-family: "Questrial", sans-serif;
-      font-size: 14px;
-      color: #898D96;
-      line-height: 1.6;
+      line-height: 1.4;
     }
 
     /* Benefits Section */
@@ -660,37 +648,32 @@
 
           <!-- Key Features -->
           <div data-aos="fade-up">
-            <h3 class="h5 fw-semibold mb-4">Key Features</h3>
+            <h3 class="text-4xl fw-semibold text-center mb-4">Key Features</h3>
+            <p class="text-xl fw-semibold text-center mb-5">Fast, flexible, and secure crypto checkout for your business:</p>
             <div class="features-grid">
-              <div class="feature-box" data-aos="fade-up">
-                <div class="feature-icon">₿</div>
-                <div class="feature-title">Accept Multiple Cryptocurrencies</div>
-                <div class="feature-desc">Support payments in Bitcoin, Ethereum, stablecoins, and other cryptocurrencies across multiple blockchain networks.</div>
+              <div class="feature-item" data-aos="fade-up">
+                <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/features/icon1.png" alt="feature icon" width="75" height="75">
+                <span>Accept Multiple Cryptocurrencies across multiple blockchain networks</span>
               </div>
-              <div class="feature-box" data-aos="fade-up">
-                <div class="feature-icon">⚡</div>
-                <div class="feature-title">Seamless Checkout Integration</div>
-                <div class="feature-desc">Easily integrate crypto checkout with your e-commerce platform or website using a single integration.</div>
+              <div class="feature-item" data-aos="fade-up">
+                <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/features/icon2.png" alt="feature icon" width="75" height="75">
+                <span>Seamless Checkout Integration with your e-commerce platform</span>
               </div>
-              <div class="feature-box" data-aos="fade-up">
-                <div class="feature-icon">🔧</div>
-                <div class="feature-title">Crypto Payment API for Developers</div>
-                <div class="feature-desc">Use our crypto checkout API and developer documentation to create customized payment experiences.</div>
+              <div class="feature-item" data-aos="fade-up">
+                <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/features/icon3.png" alt="feature icon" width="75" height="75">
+                <span>Crypto Payment API for Developers with full documentation</span>
               </div>
-              <div class="feature-box" data-aos="fade-up">
-                <div class="feature-icon">✓</div>
-                <div class="feature-title">Real-Time Payment Confirmation</div>
-                <div class="feature-desc">Monitor crypto transactions instantly with blockchain verification and transaction hash tracking.</div>
+              <div class="feature-item" data-aos="fade-up">
+                <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/features/icon4.png" alt="feature icon" width="75" height="75">
+                <span>Real-Time Payment Confirmation with blockchain verification</span>
               </div>
-              <div class="feature-box" data-aos="fade-up">
-                <div class="feature-icon">🔐</div>
-                <div class="feature-title">Secure Crypto Payment Processing</div>
-                <div class="feature-desc">Enterprise-grade encryption, fraud prevention, and transaction monitoring keep payments secure.</div>
+              <div class="feature-item" data-aos="fade-up">
+                <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/features/icon5.png" alt="feature icon" width="75" height="75">
+                <span>Secure Crypto Payment Processing with enterprise-grade encryption</span>
               </div>
-              <div class="feature-box" data-aos="fade-up">
-                <div class="feature-icon">📊</div>
-                <div class="feature-title">Merchant Dashboard and Analytics</div>
-                <div class="feature-desc">Track transactions, generate reports, and manage payments through a powerful merchant dashboard.</div>
+              <div class="feature-item" data-aos="fade-up">
+                <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/features/icon6.png" alt="feature icon" width="75" height="75">
+                <span>Merchant Dashboard and Analytics for tracking transactions</span>
               </div>
             </div>
           </div>
@@ -1084,5 +1067,6 @@
 </script>
 </body>
 </html>
+ 
  
  
