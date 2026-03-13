@@ -208,33 +208,34 @@
     .benefits-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 24px 48px;
       margin: 30px 0;
     }
     .benefit-item {
       display: flex;
       align-items: flex-start;
-      gap: 15px;
+      gap: 20px;
     }
     .benefit-circle {
-      width: 24px;
-      height: 24px;
-      background: linear-gradient(135deg, #FF6D00, #FF9E00);
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: #FF6D00;
       border-radius: 50%;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 12px;
+      font-size: 16px;
       font-weight: bold;
       margin-top: 2px;
     }
     .benefit-text {
-      font-family: "Questrial", sans-serif;
-      font-size: 14px;
+      font-family: "Inter var", ui-sans-serif, system-ui, sans-serif;
+      font-size: 18px;
       color: #1E293B;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     /* Use Cases */
@@ -683,7 +684,8 @@
 
           <!-- Key Benefits -->
           <div class="mt-5" data-aos="fade-up">
-            <h3 class="h5 fw-semibold mb-4">Key Benefits</h3>
+            <h3 class="text-4xl fw-semibold text-center mb-4">Key Benefits</h3>
+            <p class="text-xl fw-semibold text-center mb-5">Why businesses choose Finassets Crypto Checkout:</p>
             <div class="benefits-list">
               <div class="benefit-item">
                 <div class="benefit-circle">✓</div>
@@ -1070,6 +1072,7 @@
 </script>
 </body>
 </html>
+ 
  
  
  
