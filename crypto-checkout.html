@@ -76,25 +76,16 @@
     }
 
     /* Breadcrumbs */
-    .breadcrumb-nav {
-      font-size: 14px;
-      margin-bottom: 20px;
-      font-family: "Inter var", ui-sans-serif, system-ui, sans-serif;
+    .landing-breadcrumbs {
+      margin: 25px 0 40px;
     }
-    .breadcrumb-nav a {
-      color: #FF6D00;
-      text-decoration: none;
-    }
-    .breadcrumb-nav a:hover {
-      text-decoration: underline;
-    }
-    .breadcrumb-nav span {
-      color: #898D96;
-      margin: 0 8px;
-    }
-    .breadcrumb-nav .current {
+    .landing-breadcrumbs a {
       color: #1E293B;
-      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .landing-breadcrumbs a:hover {
+      text-decoration: underline;
     }
 
     /* Hero Section */
@@ -580,16 +571,17 @@
 
       <div>
 
+      <div class="landing-breadcrumbs">
+        <div class="container-xl d-flex align-items-center gap-1 fs-14">
+          <a class="text-decoration-none" href="/">Home</a>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2L8 5.5L4 9" stroke="#222D3F" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          Crypto Checkout
+        </div>
+      </div>
       <!-- ===== SECTION 1: HERO ===== -->
       <section class="service-hero">
         <div class="container">
-          <nav aria-label="breadcrumb">
-            <div class="breadcrumb-nav">
-              <a href="#">Home</a>
-              <span>&gt;</span>
-              <span class="current">Crypto Checkout</span>
-            </div>
-          </nav>
+          
 
           <div class="row align-items-center mb-5">
             <div class="col-lg-6">
