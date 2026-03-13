@@ -245,29 +245,34 @@
       margin: 30px 0;
     }
     .use-cases-list li {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 12px 0;
-      font-family: "Inter var", ui-sans-serif, system-ui, sans-serif;
-      font-size: 15px;
-      color: #1E293B;
+      padding: 16px 0;
       border-bottom: 1px solid #E2E8F0;
     }
     .use-cases-list li:last-child {
       border-bottom: none;
     }
-    .use-case-icon {
-      width: 40px;
-      height: 40px;
-      background: #F1F5F9;
-      border-radius: 8px;
+    .use-case-row {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FF6D00;
-      font-size: 18px;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .use-case-check {
       flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .use-case-title {
+      font-family: "Inter var", ui-sans-serif, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #1E293B;
+      margin-bottom: 4px;
+    }
+    .use-case-desc {
+      font-family: "Inter var", ui-sans-serif, system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: #898D96;
+      line-height: 1.6;
     }
 
     /* Demo Section */
@@ -727,29 +732,59 @@
           <div class="row align-items-center">
             <div class="col-lg-5" data-aos="fade-up">
               <ul class="use-cases-list">
-                <li>
-                  <div class="use-case-icon">🏪</div>
-                  <div>E-commerce Businesses</div>
+                <li data-aos="fade-up">
+                  <div class="use-case-row">
+                    <svg class="use-case-check" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4336 24.6562L6.30078 17.5234C5.87109 17.0938 5.87109 16.3633 6.30078 15.9336L7.84766 14.3867C8.27734 13.957 8.96484 13.957 9.39453 14.3867L14.25 19.1992L24.5625 8.88672C24.9922 8.45703 25.6797 8.45703 26.1094 8.88672L27.6562 10.4336C28.0859 10.8633 28.0859 11.5938 27.6562 12.0234L15.0234 24.6562C14.5938 25.0859 13.8633 25.0859 13.4336 24.6562Z" fill="#898D96"/></svg>
+                    <div>
+                      <div class="use-case-title">E-commerce Businesses</div>
+                      <div class="use-case-desc">Accept crypto payments on your online store with seamless checkout integration.</div>
+                    </div>
+                  </div>
                 </li>
-                <li>
-                  <div class="use-case-icon">💻</div>
-                  <div>SaaS Platforms</div>
+                <li data-aos="fade-up">
+                  <div class="use-case-row">
+                    <svg class="use-case-check" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4336 24.6562L6.30078 17.5234C5.87109 17.0938 5.87109 16.3633 6.30078 15.9336L7.84766 14.3867C8.27734 13.957 8.96484 13.957 9.39453 14.3867L14.25 19.1992L24.5625 8.88672C24.9922 8.45703 25.6797 8.45703 26.1094 8.88672L27.6562 10.4336C28.0859 10.8633 28.0859 11.5938 27.6562 12.0234L15.0234 24.6562C14.5938 25.0859 13.8633 25.0859 13.4336 24.6562Z" fill="#898D96"/></svg>
+                    <div>
+                      <div class="use-case-title">SaaS Platforms</div>
+                      <div class="use-case-desc">Offer crypto payment options for subscriptions, upgrades, and feature unlocks.</div>
+                    </div>
+                  </div>
                 </li>
-                <li>
-                  <div class="use-case-icon">🔗</div>
-                  <div>Web3 Platforms</div>
+                <li data-aos="fade-up">
+                  <div class="use-case-row">
+                    <svg class="use-case-check" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4336 24.6562L6.30078 17.5234C5.87109 17.0938 5.87109 16.3633 6.30078 15.9336L7.84766 14.3867C8.27734 13.957 8.96484 13.957 9.39453 14.3867L14.25 19.1992L24.5625 8.88672C24.9922 8.45703 25.6797 8.45703 26.1094 8.88672L27.6562 10.4336C28.0859 10.8633 28.0859 11.5938 27.6562 12.0234L15.0234 24.6562C14.5938 25.0859 13.8633 25.0859 13.4336 24.6562Z" fill="#898D96"/></svg>
+                    <div>
+                      <div class="use-case-title">Web3 Platforms</div>
+                      <div class="use-case-desc">Native crypto checkout for decentralized applications and blockchain services.</div>
+                    </div>
+                  </div>
                 </li>
-                <li>
-                  <div class="use-case-icon">🛍</div>
-                  <div>Marketplaces & Digital Services</div>
+                <li data-aos="fade-up">
+                  <div class="use-case-row">
+                    <svg class="use-case-check" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4336 24.6562L6.30078 17.5234C5.87109 17.0938 5.87109 16.3633 6.30078 15.9336L7.84766 14.3867C8.27734 13.957 8.96484 13.957 9.39453 14.3867L14.25 19.1992L24.5625 8.88672C24.9922 8.45703 25.6797 8.45703 26.1094 8.88672L27.6562 10.4336C28.0859 10.8633 28.0859 11.5938 27.6562 12.0234L15.0234 24.6562C14.5938 25.0859 13.8633 25.0859 13.4336 24.6562Z" fill="#898D96"/></svg>
+                    <div>
+                      <div class="use-case-title">Marketplaces &amp; Digital Services</div>
+                      <div class="use-case-desc">Enable crypto payments for digital goods, services, and marketplace transactions.</div>
+                    </div>
+                  </div>
                 </li>
-                <li>
-                  <div class="use-case-icon">👨‍💼</div>
-                  <div>Freelancers and Agencies</div>
+                <li data-aos="fade-up">
+                  <div class="use-case-row">
+                    <svg class="use-case-check" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4336 24.6562L6.30078 17.5234C5.87109 17.0938 5.87109 16.3633 6.30078 15.9336L7.84766 14.3867C8.27734 13.957 8.96484 13.957 9.39453 14.3867L14.25 19.1992L24.5625 8.88672C24.9922 8.45703 25.6797 8.45703 26.1094 8.88672L27.6562 10.4336C28.0859 10.8633 28.0859 11.5938 27.6562 12.0234L15.0234 24.6562C14.5938 25.0859 13.8633 25.0859 13.4336 24.6562Z" fill="#898D96"/></svg>
+                    <div>
+                      <div class="use-case-title">Freelancers and Agencies</div>
+                      <div class="use-case-desc">Get paid in crypto for projects, hourly work, or retainer-based contracts.</div>
+                    </div>
+                  </div>
                 </li>
-                <li>
-                  <div class="use-case-icon">🎮</div>
-                  <div>iGaming Platforms</div>
+                <li data-aos="fade-up">
+                  <div class="use-case-row">
+                    <svg class="use-case-check" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4336 24.6562L6.30078 17.5234C5.87109 17.0938 5.87109 16.3633 6.30078 15.9336L7.84766 14.3867C8.27734 13.957 8.96484 13.957 9.39453 14.3867L14.25 19.1992L24.5625 8.88672C24.9922 8.45703 25.6797 8.45703 26.1094 8.88672L27.6562 10.4336C28.0859 10.8633 28.0859 11.5938 27.6562 12.0234L15.0234 24.6562C14.5938 25.0859 13.8633 25.0859 13.4336 24.6562Z" fill="#898D96"/></svg>
+                    <div>
+                      <div class="use-case-title">iGaming Platforms</div>
+                      <div class="use-case-desc">Fast and secure crypto deposits and withdrawals for gaming platforms.</div>
+                    </div>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -1072,6 +1107,7 @@
 </script>
 </body>
 </html>
+ 
  
  
  
