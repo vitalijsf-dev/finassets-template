@@ -420,33 +420,28 @@
     /* Services Grid */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin: 40px 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 900px;
+      margin: 40px auto;
     }
     .service-card {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      padding: 30px;
       text-align: center;
-      transition: all 0.3s ease;
+      padding: 20px;
     }
     .service-card:hover {
       border-color: #FF6D00;
       box-shadow: 0 4px 20px rgba(255, 109, 0, 0.1);
     }
     .service-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #FF6D00, #FF9E00);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 32px;
+      width: 112px;
+      height: 112px;
       margin: 0 auto 15px;
+    }
+    .service-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
     .service-name {
       font-family: "Inter var", ui-sans-serif, system-ui, sans-serif;
@@ -457,7 +452,8 @@
 
     /* Buttons */
     .mil-btn {
-      background: linear-gradient(135deg, #FF6D00, #FF9E00);
+      background-color: #FF6D00;
+      background-image: none;
       color: #FFFFFF;
       border: none;
       border-radius: 10px;
@@ -469,6 +465,17 @@
       text-decoration: none;
       display: inline-block;
       transition: all 0.3s ease;
+    }
+    .mil-btn.mil-light {
+      background-color: #F1F5F9;
+      background-image: none;
+      color: #898F96;
+    }
+    .mil-btn.mil-sm {
+      padding: 0px 20px;
+      height: 48px;
+      line-height: 48px;
+      font-size: 16px;
     }
     .mil-btn:hover {
       transform: translateY(-2px);
@@ -941,43 +948,53 @@
 
       <!-- ===== SECTION 9: EXPLORE MORE SERVICES ===== -->
       <section class="py-5">
-        <div class="container">
-          <div class="text-center mb-5" data-aos="fade-up">
-            <h2 class="h2 fw-semibold mb-4">Explore More Services</h2>
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="h2 fw-semibold mb-4" data-aos="fade-up">Explore More Services</h2>
+        </div>
+        <div class="services-grid">
+          <div class="service-card" data-aos="fade-up">
+            <div class="service-icon">
+              <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/i-services-1.png" width="112" height="112" alt="API">
+            </div>
+            <a href="https://www.finassets.io/en/crypto-payment-gateway-api/" target="_blank" class="mil-text-ml fw-semibold mil-link-orange text-decoration-none">Crypto API Integration</a>
           </div>
-
-          <div class="services-grid" data-aos="fade-up">
-            <div class="service-card" data-aos="fade-up">
-              <div class="service-icon">📋</div>
-              <div class="service-name">Crypto Invoicing</div>
+          <div class="service-card" data-aos="fade-up">
+            <div class="service-icon">
+              <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/i-services-2.png" width="112" height="112" alt="Invoicing">
             </div>
-            <div class="service-card" data-aos="fade-up">
-              <div class="service-icon">🔘</div>
-              <div class="service-name">Payment Button</div>
-            </div>
-            <div class="service-card" data-aos="fade-up">
-              <div class="service-icon">💱</div>
-              <div class="service-name">Crypto Exchange</div>
-            </div>
-            <div class="service-card" data-aos="fade-up">
-              <div class="service-icon">🔌</div>
-              <div class="service-name">Crypto API Integration</div>
-            </div>
-            <div class="service-card" data-aos="fade-up">
-              <div class="service-icon">⚙️</div>
-              <div class="service-name">Crypto to Fiat Auto-convert</div>
-            </div>
-            <div class="service-card" data-aos="fade-up">
-              <div class="service-icon">💸</div>
-              <div class="service-name">Mass-Payouts</div>
-            </div>
+            <a href="https://www.finassets.io/en/crypto-invoicing/" target="_blank" class="mil-text-ml fw-semibold mil-link-orange text-decoration-none">Crypto Invoicing</a>
           </div>
-
-          <div class="text-center mt-5" data-aos="fade-up">
-            <a href="#" style="color: #FF6D00; font-weight: 600; text-decoration: none;">View All Crypto Payment Solutions →</a>
+          <div class="service-card" data-aos="fade-up">
+            <div class="service-icon">
+              <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/i-services-3.png" width="112" height="112" alt="Exchange">
+            </div>
+            <a href="https://www.finassets.io/en/cryptocurrency-exchange-b2b/" target="_blank" class="mil-text-ml fw-semibold mil-link-orange text-decoration-none">Crypto Exchange</a>
+          </div>
+          <div class="service-card" data-aos="fade-up">
+            <div class="service-icon">
+              <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/i-services-4.png" width="112" height="112" alt="Auto-convert">
+            </div>
+            <a href="https://www.finassets.io/en/crypto-to-fiat-auto-convert/" target="_blank" class="mil-text-ml fw-semibold mil-link-orange text-decoration-none">Crypto to Fiat Auto-convert</a>
+          </div>
+          <div class="service-card" data-aos="fade-up">
+            <div class="service-icon">
+              <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/i-services-5.png" width="112" height="112" alt="Custody">
+            </div>
+            <a href="https://www.finassets.io/en/crypto-custody-solutions/" target="_blank" class="mil-text-ml fw-semibold mil-link-orange text-decoration-none">Crypto Custody</a>
+          </div>
+          <div class="service-card" data-aos="fade-up">
+            <div class="service-icon">
+              <img src="https://www.finassets.io/assets/ac71cb6c/images/services/icons/i-services-6.png" width="112" height="112" alt="Mass-Payouts">
+            </div>
+            <a href="https://www.finassets.io/en/crypto-mass-payouts/" target="_blank" class="mil-text-ml fw-semibold mil-link-orange text-decoration-none">Mass-Payouts</a>
           </div>
         </div>
-      </section>
+        <div class="text-center mt-4">
+          <a href="https://www.finassets.io/en/crypto-payment-solutions/" class="mil-text-ml mil-link-gray">View All Crypto Payment Solutions</a>
+        </div>
+      </div>
+    </section>
 
       </div><!-- end inner wrapper div -->
 
