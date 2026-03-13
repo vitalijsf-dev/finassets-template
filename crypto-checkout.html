@@ -92,17 +92,32 @@
     .service-hero {
       padding: 20px 0 60px 0;
       position: relative;
-      overflow: visible;
+      overflow: hidden;
+    }
+    .service-hero .container {
+      position: relative;
     }
     .service-hero .col-lg-6:not(.hero-image-col) {
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
     .service-hero .hero-image-col {
       position: absolute;
-      right: 0;
+      right: -15px;
       top: 0;
-      width: 48%;
+      width: 55%;
+      z-index: 0;
+    }
+    .service-hero .hero-image-col::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      background: linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0) 100%);
+      z-index: 1;
+      pointer-events: none;
     }
     .service-hero .hero-image-col .mil-image-frame {
       border-radius: 40px;
