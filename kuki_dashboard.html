@@ -425,6 +425,26 @@
       min-height: 20px;
     }
 
+    .remember-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .remember-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #3b82f6;
+      cursor: pointer;
+    }
+    .remember-row label {
+      font-size: 13px;
+      color: #94a3b8;
+      cursor: pointer;
+    }
+
     /* Footer */
     .footer {
       text-align: center;
@@ -541,6 +561,10 @@
 
       <input type="password" class="login-input" id="login-password" placeholder="Пароль" autocomplete="off" onkeydown="if(event.key==='Enter')checkPassword()">
       <button class="login-btn" onclick="checkPassword()">Войти</button>
+      <div class="remember-row">
+        <input type="checkbox" id="remember-me">
+        <label for="remember-me">Не спрашивать пароль на этом устройстве</label>
+      </div>
       <div class="login-error-msg" id="login-error"></div>
     </div>
   </div>
@@ -842,11 +866,30 @@
     // Password check (simple hash to avoid plaintext in source)
     const _h = s => { let h=0; for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;} return h; };
     const _validHash = _h('!kukiMUKI@');
+    const _AUTH_KEY = 'kuki_dash_auth';
+
+    // Auto-login if previously remembered
+    (function autoLogin() {
+      try {
+        const saved = localStorage.getItem(_AUTH_KEY);
+        if (saved && Number(saved) === _validHash) {
+          document.getElementById('login-overlay').classList.add('hidden');
+          document.getElementById('dashboard-content').style.display = '';
+          window.dispatchEvent(new Event('dashboard-ready'));
+        }
+      } catch(e) {}
+    })();
 
     function checkPassword() {
       const input = document.getElementById('login-password');
       const error = document.getElementById('login-error');
       if (_h(input.value) === _validHash) {
+        // Save to localStorage if checkbox is checked
+        try {
+          if (document.getElementById('remember-me').checked) {
+            localStorage.setItem(_AUTH_KEY, String(_validHash));
+          }
+        } catch(e) {}
         document.getElementById('login-overlay').classList.add('hidden');
         document.getElementById('dashboard-content').style.display = '';
         // Trigger chart initialization after dashboard becomes visible
@@ -856,6 +899,8 @@
         error.textContent = 'Неверный пароль. Попробуйте ещё раз.';
         setTimeout(() => input.classList.remove('error'), 400);
       }
+    }
+
     }
 
     // ============================================================
