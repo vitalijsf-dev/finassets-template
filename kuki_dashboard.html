@@ -452,6 +452,69 @@
     ::-webkit-scrollbar-thumb:hover {
       background: rgba(255, 255, 255, 0.25);
     }
+  
+    /* Loading indicator */
+    .data-loading-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.4s ease;
+    }
+    .data-loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-text {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-top: 16px;
+      font-weight: 500;
+    }
+    .loading-subtext {
+      color: #64748b;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+    .data-source-badge {
+      position: fixed;
+      bottom: 12px;
+      right: 16px;
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: #64748b;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .data-source-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .data-source-badge .dot.live { background: #10b981; }
+    .data-source-badge .dot.fallback { background: #f59e0b; }
   </style>
 </head>
 <body>
@@ -461,6 +524,21 @@
       <div class="login-logo">📊</div>
       <div class="login-title">Kuki Analytics</div>
       <div class="login-sub">Введите пароль для доступа к дашборду</div>
+
+  <!-- Loading overlay (shown while fetching data from Google Sheets) -->
+  <div class="data-loading-overlay hidden" id="data-loading">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Загрузка данных...</div>
+    <div class="loading-subtext" id="loading-subtext">Подключение к Google Sheets</div>
+  </div>
+
+  <!-- Data source badge -->
+  <div class="data-source-badge hidden" id="data-source-badge">
+    <span class="dot" id="data-source-dot"></span>
+    <span id="data-source-text"></span>
+  </div>
+
+
       <input type="password" class="login-input" id="login-password" placeholder="Пароль" autocomplete="off" onkeydown="if(event.key==='Enter')checkPassword()">
       <button class="login-btn" onclick="checkPassword()">Войти</button>
       <div class="login-error-msg" id="login-error"></div>
@@ -780,7 +858,14 @@
       }
     }
 
-    const DATA = [
+    // ============================================================
+    // DATA LOADING: fetch from Google Sheets Web App, fallback to static
+    // ============================================================
+
+    const DATA_URL = 'https://script.google.com/macros/s/AKfycbyzK_q1mp7rsRSMLfZP9tYFifRYEMt-A7htxCNrTLAudv4UTYPKLXRB0j6iktfJauQ/exec';
+
+    // Static data (fallback)
+    const STATIC_DATA = [
       {date:"2026-02-01",regs:20,unique:74,fd_count:3,fd_sum:116.78,fd_regs:15,deps:1321.10,wdraw:771.84,c_ggr:562.95,s_ggr:0,t_ggr:562.55,c_ngr:402.48,s_ngr:0,t_ngr:402.48},
       {date:"2026-02-02",regs:19,unique:81,fd_count:5,fd_sum:224.81,fd_regs:26.32,deps:3274.18,wdraw:639.25,c_ggr:2587.69,s_ggr:10,t_ggr:2597.69,c_ngr:2375.06,s_ngr:10,t_ngr:2385.06},
       {date:"2026-02-03",regs:14,unique:56,fd_count:0,fd_sum:0,fd_regs:0,deps:3012.88,wdraw:1290.82,c_ggr:2697.32,s_ggr:-52.87,t_ggr:2644.45,c_ngr:2471.27,s_ngr:-38.97,t_ngr:2432.30},
@@ -826,6 +911,72 @@
       {date:"2026-03-15",regs:107,unique:18,fd_count:9,fd_sum:550.85,fd_regs:8.41,deps:1820.69,wdraw:0,c_ggr:2770.11,s_ggr:20,t_ggr:2790.11,c_ngr:1620.39,s_ngr:20,t_ngr:1640.39},
       {date:"2026-03-16",regs:67,unique:14,fd_count:2,fd_sum:140,fd_regs:2.99,deps:3424.94,wdraw:2668,c_ggr:2665.4,s_ggr:0,t_ggr:2665.4,c_ngr:2300,s_ngr:0,t_ngr:2300}
     ];
+
+    let DATA = STATIC_DATA;
+    let DATA_SOURCE = 'static';
+
+    async function fetchLiveData() {
+      if (!DATA_URL) return null;
+      const loadingEl = document.getElementById('data-loading');
+      const subtextEl = document.getElementById('loading-subtext');
+      try {
+        loadingEl.classList.remove('hidden');
+        subtextEl.textContent = '\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435 \u043a Google Sheets...';
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 10000);
+        const response = await fetch(DATA_URL, {
+          signal: controller.signal,
+          cache: 'no-cache'
+        });
+        clearTimeout(timeout);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        subtextEl.textContent = '\u041e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0430 \u0434\u0430\u043d\u043d\u044b\u0445...';
+        const json = await response.json();
+        if (!Array.isArray(json) || json.length === 0) throw new Error('Empty response');
+        const required = ['date', 'regs', 'deps', 't_ggr'];
+        const firstItem = json[0];
+        for (const field of required) {
+          if (!(field in firstItem)) throw new Error('Missing field: ' + field);
+        }
+        const numericFields = ['regs','unique','fd_count','fd_sum','fd_regs','deps','wdraw','c_ggr','s_ggr','t_ggr','c_ngr','s_ngr','t_ngr'];
+        json.forEach(row => {
+          numericFields.forEach(fld => { if (fld in row) row[fld] = Number(row[fld]) || 0; });
+        });
+        return json;
+      } catch (err) {
+        console.warn('Fetch failed, using static data:', err.message);
+        subtextEl.textContent = '\u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044e\u0442\u0441\u044f \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435';
+        return null;
+      } finally {
+        setTimeout(() => loadingEl.classList.add('hidden'), 300);
+      }
+    }
+
+    function showDataSourceBadge(source, recordCount) {
+      const badge = document.getElementById('data-source-badge');
+      const dot = document.getElementById('data-source-dot');
+      const text = document.getElementById('data-source-text');
+      if (source === 'live') {
+        dot.className = 'dot live';
+        text.textContent = 'Live data \u2022 ' + recordCount + ' \u0434\u043d\u0435\u0439';
+      } else {
+        dot.className = 'dot fallback';
+        text.textContent = 'Offline data \u2022 ' + recordCount + ' \u0434\u043d\u0435\u0439';
+      }
+      badge.classList.remove('hidden');
+    }
+
+    function updateFooterDates() {
+      if (DATA.length === 0) return;
+      const first = DATA[0].date;
+      const last = DATA[DATA.length - 1].date;
+      const fmt = d => { const [y,m,dd] = d.split('-'); return dd + '.' + m + '.' + y; };
+      const footer = document.querySelector('.footer');
+      if (footer) {
+        footer.textContent = 'Kuki Analytics Dashboard \u2022 Data: ' + fmt(first) + ' \u2014 ' + fmt(last);
+      }
+    }
+
 
     const charts = [];
 
@@ -1303,7 +1454,8 @@
       }
     }
 
-    window.addEventListener('dashboard-ready', () => {
+    function initDashboard() {
+
       for (let i = 0; i < 6; i++) {
         charts.push(createChart(i));
       }
@@ -1317,6 +1469,19 @@
       }
       updateKPIs();
       updateGlobalSummary('all');
+    
+      updateFooterDates();
+      showDataSourceBadge(DATA_SOURCE, DATA.length);
+    }
+
+    window.addEventListener('dashboard-ready', async () => {
+      // Try to load live data from Google Sheets
+      const liveData = await fetchLiveData();
+      if (liveData) {
+        DATA = liveData;
+        DATA_SOURCE = 'live';
+      }
+      initDashboard();
     });
   </script>
 </body>
