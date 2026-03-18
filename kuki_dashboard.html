@@ -5,7 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kuki Analytics Dashboard 2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js">
+
+    // ===================== DYNAMIC AI ANALYSIS (via proxy) =====================
+    const AI_PROXY = 'https://script.google.com/macros/s/AKfycbydXYcM59QD1QG9MqNCuZkh2c5JVVQ6gYxdxv40c5YrRzrqex6lbyDf3spY_2CDJsrA/exec';
+    
+    async function generateAIAnalysis(data) {
+      const blocks = document.querySelectorAll('.ai-analysis');
+      if (!blocks.length || !data.length) return;
+      
+      blocks.forEach(b => { const p = b.querySelector('p'); if (p) p.textContent = '\u0413\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f AI-\u0430\u043d\u0430\u043b\u0438\u0437\u0430...'; });
+      
+      const first = data[0], last = data[data.length-1];
+      const avg = (arr, fn) => (arr.reduce((s,d) => s+fn(d), 0) / arr.length).toFixed(1);
+      const sum = (arr, fn) => arr.reduce((s,d) => s+fn(d), 0).toFixed(0);
+      
+      const sections = [
+        'User Acquisition: regs/day avg=' + avg(data,d=>d.regs) + ', max=' + Math.max(...data.map(d=>d.regs)) + ', avg unique=' + avg(data,d=>d.unique),
+        'First Deposits: FD count=' + sum(data,d=>d.fd_count) + ', FD sum=' + sum(data,d=>d.fd_sum) + ' EUR, avg FD/Regs=' + avg(data,d=>d.fd_regs) + '%',
+        'Cash Flow: deposits=' + sum(data,d=>d.deps) + ', withdrawals=' + sum(data,d=>d.wdraw) + ', net=' + (data.reduce((s,d)=>s+d.deps-d.wdraw,0)).toFixed(0) + ' EUR',
+        'GGR: casino=' + sum(data,d=>d.c_ggr) + ', sport=' + sum(data,d=>d.s_ggr) + ', total=' + sum(data,d=>d.t_ggr) + ' EUR',
+        'GGR vs NGR: GGR=' + sum(data,d=>d.t_ggr) + ', NGR=' + sum(data,d=>d.t_ngr) + ' EUR',
+        'Conversion: avg FD/Regs=' + avg(data,d=>d.fd_regs) + '%, total regs=' + sum(data,d=>d.regs) + ', total FD=' + sum(data,d=>d.fd_count)
+      ];
+      
+      const prompt = 'Analytics expert for iGaming. Period: ' + first.date + ' to ' + last.date + ' (' + data.length + ' days).\nGenerate 6 SHORT paragraphs (2-3 sentences, Russian) for:\n' + sections.join('\n') + '\nReturn ONLY JSON array of 6 strings. No markdown.';
+      
+      try {
+        const r = await fetch(AI_PROXY, {method:'POST', body:JSON.stringify({prompt}), headers:{'Content-Type':'text/plain;charset=utf-8'}, redirect:'follow'});
+        const d = await r.json();
+        const texts = JSON.parse(d.result);
+        blocks.forEach((b, i) => { const p = b.querySelector('p'); if (p && texts[i]) p.textContent = texts[i]; });
+      } catch(e) { console.warn('AI analysis error:', e); }
+    }
+\n    </script>
   <style>
     * {
       margin: 0;
@@ -1546,7 +1579,7 @@
         DATA = liveData;
         DATA_SOURCE = 'live';
       }
-      initDashboard();
+      initDashboard();\n        generateAIAnalysis(DATA);
     });
   </script>
 </body>
