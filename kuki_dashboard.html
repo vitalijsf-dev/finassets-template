@@ -1573,7 +1573,7 @@
       try{
         var r=await fetch(AI_P,{method:"POST",body:JSON.stringify({prompt:pr}),headers:{"Content-Type":"text/plain;charset=utf-8"}});
         var d=await r.json();
-        var tx=JSON.parse(d.result);
+        var raw=d.result.replace(/```json\n?/g,"").replace(/```\n?/g,"").trim(); var tx=JSON.parse(raw);
         bl.forEach(function(b,i){var p=b.querySelector("p");if(p&&tx[i])p.textContent=tx[i]});
       }catch(e){console.warn("AI err:",e)}
     }
