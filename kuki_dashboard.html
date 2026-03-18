@@ -569,7 +569,7 @@
     </div>
   </div>
 
-  <div class="container" id="dashboard-content" style="display:none">
+  <div class="container" id="dashboard-cotent" style="display:none">
     <!-- Header -->
     <div class="header">
       <h1>Kuki Analytics Dashboard 2026</h1>
@@ -906,7 +906,7 @@
     // DATA LOADING: fetch from Google Sheets Web App, fallback to static
     // ============================================================
 
-    const DATA_URL = 'https://script.google.com/macros/s/AKfycbyzK_q1mp7rsRSMLfZP9tYFifRYEMt-A7htxCNrTLAudv4UTYPKLXRB0j6iktfJauQ/exec';
+    const DATA_URL = 'https://script.google.com/macros/s/AKfycbxbNcLMjnwi5qUZIaBKi5VGi-NMYvUHuOurjBRaILgCahJNkwPCpp3-BjmLpZNNu5NENA/exec';
 
     // Static data (fallback)
     const STATIC_DATA = [
@@ -982,7 +982,7 @@
         for (const field of required) {
           if (!(field in firstItem)) throw new Error('Missing field: ' + field);
         }
-        const numericFields = ['regs','unique','fd_count','fd_sum','fd_regs','deps','wdraw','c_ggr','s_ggr','t_ggr','c_ngr','s_ngr','t_ngr'];
+        const numericFields = ['regs','unique','fd_count','fd_sum','fd_regs','deps','wdraw','c_ggr','s_ggr','t_ggr','c_ngr','s_ngr','t_ngr','fd_deps'];
         json.forEach(row => {
           numericFields.forEach(fld => { if (fld in row) row[fld] = Number(row[fld]) || 0; });
         });
@@ -2438,7 +2438,7 @@
     // DATA LOADING: fetch from Google Sheets Web App, fallback to static
     // ============================================================
 
-    const DATA_URL = 'https://script.google.com/macros/s/AKfycbyzK_q1mp7rsRSMLfZP9tYFifRYEMt-A7htxCNrTLAudv4UTYPKLXRB0j6iktfJauQ/exec';
+    const DATA_URL = 'https://script.google.com/macros/s/AKfycbxbNcLMjnwi5qUZIaBKi5VGi-NMYvUHuOurjBRaILgCahJNkwPCpp3-BjmLpZNNu5NENA/exec';
 
     // Static data (fallback)
     const STATIC_DATA = [
