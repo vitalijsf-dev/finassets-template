@@ -539,6 +539,10 @@
     .ai-update-btn{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;padding:6px 14px;border-radius:8px;cursor:pointer;font-size:12px;margin-top:8px;transition:all .3s}
     .ai-update-btn:hover{transform:scale(1.05);box-shadow:0 2px 10px rgba(99,102,241,.4)}
     .ai-update-btn:disabled{opacity:.6;cursor:wait}
+    
+    .ai-update-btn{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;padding:6px 14px;border-radius:8px;cursor:pointer;font-size:12px;margin-top:8px;transition:all .3s}
+    .ai-update-btn:hover{transform:scale(1.05);box-shadow:0 2px 10px rgba(99,102,241,.4)}
+    .ai-update-btn:disabled{opacity:.6;cursor:wait}
     </style>
 </head>
 <body>
@@ -1588,7 +1592,36 @@
       btn.disabled=false;btn.innerHTML="\u{1F504} \u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C AI";
     }
 
+    function initAIButtons(){
+      document.querySelectorAll(".ai-analysis").forEach(function(block,idx){
+        if(block.querySelector(".ai-update-btn"))return;
+        var btn=document.createElement("button");
+        btn.className="ai-update-btn";
+        btn.textContent=String.fromCharCode(0x1F504)+" Update AI";
+        btn.onclick=function(){updateSingleAI(block,idx,btn)};
+        block.appendChild(btn);
+      });
+    }
+
+    async function updateSingleAI(block,idx,btn){
+      var p=block.querySelector("p");
+      btn.disabled=true;btn.textContent=String.fromCharCode(0x23F3)+" Loading...";
+      if(p)p.style.opacity="0.5";
+      var data=DATA;
+      var section=block.closest(".chart-section");
+      if(section){var ab=section.querySelector(".filter-btn.active");if(ab){var t=ab.textContent.trim();if(t==="7d")data=filterData("7d");else if(t==="30d")data=filterData("30d");else if(t.indexOf("ester")>-1)data=filterData("yesterday");}}
+      if(!data||!data.length)data=DATA;
+      var f=data[0],l=data[data.length-1];
+      var sm=function(fn){return data.reduce(function(a,d){return a+fn(d)},0).toFixed(0)};
+      var av=function(fn){return(data.reduce(function(a,d){return a+fn(d)},0)/data.length).toFixed(1)};
+      var topics=["User Acquisition: regs/day="+av(function(d){return d.regs}),"First Deposits: count="+sm(function(d){return d.fd_count})+" sum="+sm(function(d){return d.fd_sum})+"EUR","Cash Flow: deps="+sm(function(d){return d.deps})+" wdraw="+sm(function(d){return d.wdraw}),"GGR: casino="+sm(function(d){return d.c_ggr})+" sport="+sm(function(d){return d.s_ggr}),"NGR: GGR="+sm(function(d){return d.t_ggr})+" NGR="+sm(function(d){return d.t_ngr}),"Conversion: fdRegs="+av(function(d){return d.fd_regs})+"%"];
+      var pr="iGaming analytics. "+f.date+" to "+l.date+" ("+data.length+"d). 1 SHORT paragraph (2-3 sent, Russian): "+(topics[idx]||topics[0])+". Plain text only.";
+      try{var r=await fetch(AI_P,{method:"POST",body:JSON.stringify({prompt:pr}),headers:{"Content-Type":"text/plain;charset=utf-8"}});var d=await r.json();var txt=d.result||"";txt=txt.replace(/```[a-z]*/g,"").replace(/```/g,"").trim();if(p){p.textContent=txt;p.style.opacity="1";}}catch(e){if(p){p.textContent="Error: "+e.message;p.style.opacity="1";}}
+      btn.disabled=false;btn.textContent=String.fromCharCode(0x1F504)+" Update AI";
+    }
+
     async function generateAIAnalysis(data){initAIButtons();}
+
 
     </script>
 </body>
