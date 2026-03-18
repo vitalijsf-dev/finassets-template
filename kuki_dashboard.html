@@ -535,21 +535,25 @@
     }
     .data-source-badge .dot.live { background: #10b981; }
     .data-source-badge .dot.fallback { background: #f59e0b; }
-  </style>
+  
+    .ai-update-btn{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;padding:6px 14px;border-radius:8px;cursor:pointer;font-size:12px;margin-top:8px;transition:all .3s}
+    .ai-update-btn:hover{transform:scale(1.05);box-shadow:0 2px 10px rgba(99,102,241,.4)}
+    .ai-update-btn:disabled{opacity:.6;cursor:wait}
+    </style>
 </head>
 <body>
   <!-- Login Screen -->
   <div class="login-overlay" id="login-overlay">
     <div class="login-box">
-      <div class="login-logo">📊</div>
+      <div class="login-logo">ð</div>
       <div class="login-title">Kuki Analytics</div>
-      <div class="login-sub">Введите пароль для доступа к дашборду</div>
+      <div class="login-sub">ÐÐ²ÐµÐ´Ð¸ÑÐµ Ð¿Ð°ÑÐ¾Ð»Ñ Ð´Ð»Ñ Ð´Ð¾ÑÑÑÐ¿Ð° Ðº Ð´Ð°ÑÐ±Ð¾ÑÐ´Ñ</div>
 
   <!-- Loading overlay (shown while fetching data from Google Sheets) -->
   <div class="data-loading-overlay hidden" id="data-loading">
     <div class="loading-spinner"></div>
-    <div class="loading-text">Загрузка данных...</div>
-    <div class="loading-subtext" id="loading-subtext">Подключение к Google Sheets</div>
+    <div class="loading-text">ÐÐ°Ð³ÑÑÐ·ÐºÐ° Ð´Ð°Ð½Ð½ÑÑ...</div>
+    <div class="loading-subtext" id="loading-subtext">ÐÐ¾Ð´ÐºÐ»ÑÑÐµÐ½Ð¸Ðµ Ðº Google Sheets</div>
   </div>
 
   <!-- Data source badge -->
@@ -559,11 +563,11 @@
   </div>
 
 
-      <input type="password" class="login-input" id="login-password" placeholder="Пароль" autocomplete="off" onkeydown="if(event.key==='Enter')checkPassword()">
-      <button class="login-btn" onclick="checkPassword()">Войти</button>
+      <input type="password" class="login-input" id="login-password" placeholder="ÐÐ°ÑÐ¾Ð»Ñ" autocomplete="off" onkeydown="if(event.key==='Enter')checkPassword()">
+      <button class="login-btn" onclick="checkPassword()">ÐÐ¾Ð¹ÑÐ¸</button>
       <div class="remember-row">
         <input type="checkbox" id="remember-me">
-        <label for="remember-me">Не спрашивать пароль на этом устройстве</label>
+        <label for="remember-me">ÐÐµ ÑÐ¿ÑÐ°ÑÐ¸Ð²Ð°ÑÑ Ð¿Ð°ÑÐ¾Ð»Ñ Ð½Ð° ÑÑÐ¾Ð¼ ÑÑÑÑÐ¾Ð¹ÑÑÐ²Ðµ</label>
       </div>
       <div class="login-error-msg" id="login-error"></div>
     </div>
@@ -573,35 +577,35 @@
     <!-- Header -->
     <div class="header">
       <h1>Kuki Analytics Dashboard 2026</h1>
-      <p id="header-period">Platform Performance Overview • Feb—Mar 2026</p>
+      <p id="header-period">Platform Performance Overview â¢ FebâMar 2026</p>
     </div>
 
     <!-- KPI Cards -->
     <div class="kpi-row">
       <div class="kpi-card emerald">
         <div class="kpi-header">
-          <span class="kpi-icon">💰</span>
+          <span class="kpi-icon">ð°</span>
           <span class="kpi-label">Total GGR</span>
         </div>
-        <div class="kpi-value" id="kpi-total-ggr">€0.00</div>
+        <div class="kpi-value" id="kpi-total-ggr">â¬0.00</div>
       </div>
       <div class="kpi-card sky">
         <div class="kpi-header">
-          <span class="kpi-icon">📊</span>
+          <span class="kpi-icon">ð</span>
           <span class="kpi-label">Avg Daily GGR</span>
         </div>
-        <div class="kpi-value" id="kpi-avg-ggr">€0.00</div>
+        <div class="kpi-value" id="kpi-avg-ggr">â¬0.00</div>
       </div>
       <div class="kpi-card amber">
         <div class="kpi-header">
-          <span class="kpi-icon">👥</span>
+          <span class="kpi-icon">ð¥</span>
           <span class="kpi-label">Total Registrations</span>
         </div>
         <div class="kpi-value" id="kpi-total-regs">0</div>
       </div>
       <div class="kpi-card rose">
         <div class="kpi-header">
-          <span class="kpi-icon">🎯</span>
+          <span class="kpi-icon">ð¯</span>
           <span class="kpi-label">Avg Conversion</span>
         </div>
         <div class="kpi-value" id="kpi-avg-conversion">0.00%</div>
@@ -610,60 +614,60 @@
 
     <!-- Global Period Filter -->
     <div class="global-filter" id="global-filter">
-      <span class="global-filter-label">🌐 Период для всех графиков:</span>
-      <button class="global-btn active" onclick="setGlobalPeriod('all')">Всё время</button>
-      <button class="global-btn" onclick="setGlobalPeriod('30d')">30 дней</button>
-      <button class="global-btn" onclick="setGlobalPeriod('7d')">7 дней</button>
-      <button class="global-btn" onclick="setGlobalPeriod('yesterday')">Вчера</button>
+      <span class="global-filter-label">ð ÐÐµÑÐ¸Ð¾Ð´ Ð´Ð»Ñ Ð²ÑÐµÑ Ð³ÑÐ°ÑÐ¸ÐºÐ¾Ð²:</span>
+      <button class="global-btn active" onclick="setGlobalPeriod('all')">ÐÑÑ Ð²ÑÐµÐ¼Ñ</button>
+      <button class="global-btn" onclick="setGlobalPeriod('30d')">30 Ð´Ð½ÐµÐ¹</button>
+      <button class="global-btn" onclick="setGlobalPeriod('7d')">7 Ð´Ð½ÐµÐ¹</button>
+      <button class="global-btn" onclick="setGlobalPeriod('yesterday')">ÐÑÐµÑÐ°</button>
     </div>
 
     <!-- Global Summary -->
     <div class="global-summary" id="global-summary">
-      <div class="global-summary-title">📋 Общий обзор за период</div>
-      <div class="global-summary-period" id="summary-period-label">Период: 01.02.2026 — 16.03.2026 (44 дня)</div>
+      <div class="global-summary-title">ð ÐÐ±ÑÐ¸Ð¹ Ð¾Ð±Ð·Ð¾Ñ Ð·Ð° Ð¿ÐµÑÐ¸Ð¾Ð´</div>
+      <div class="global-summary-period" id="summary-period-label">ÐÐµÑÐ¸Ð¾Ð´: 01.02.2026 â 16.03.2026 (44 Ð´Ð½Ñ)</div>
       <div class="summary-metrics">
         <div class="summary-metric">
-          <div class="summary-metric-label">Доход (Total GGR)</div>
-          <div class="summary-metric-value" id="sm-total-ggr">—</div>
+          <div class="summary-metric-label">ÐÐ¾ÑÐ¾Ð´ (Total GGR)</div>
+          <div class="summary-metric-value" id="sm-total-ggr">â</div>
           <div class="summary-metric-sub" id="sm-total-ggr-sub"></div>
         </div>
         <div class="summary-metric">
-          <div class="summary-metric-label">Чистый доход (Total NGR)</div>
-          <div class="summary-metric-value" id="sm-total-ngr">—</div>
+          <div class="summary-metric-label">Ð§Ð¸ÑÑÑÐ¹ Ð´Ð¾ÑÐ¾Ð´ (Total NGR)</div>
+          <div class="summary-metric-value" id="sm-total-ngr">â</div>
           <div class="summary-metric-sub" id="sm-total-ngr-sub"></div>
         </div>
         <div class="summary-metric">
-          <div class="summary-metric-label">Депозиты</div>
-          <div class="summary-metric-value" id="sm-deps">—</div>
+          <div class="summary-metric-label">ÐÐµÐ¿Ð¾Ð·Ð¸ÑÑ</div>
+          <div class="summary-metric-value" id="sm-deps">â</div>
           <div class="summary-metric-sub" id="sm-deps-sub"></div>
         </div>
         <div class="summary-metric">
-          <div class="summary-metric-label">Выводы</div>
-          <div class="summary-metric-value" id="sm-wdraw">—</div>
+          <div class="summary-metric-label">ÐÑÐ²Ð¾Ð´Ñ</div>
+          <div class="summary-metric-value" id="sm-wdraw">â</div>
           <div class="summary-metric-sub" id="sm-wdraw-sub"></div>
         </div>
         <div class="summary-metric">
-          <div class="summary-metric-label">Регистрации</div>
-          <div class="summary-metric-value" id="sm-regs">—</div>
+          <div class="summary-metric-label">Ð ÐµÐ³Ð¸ÑÑÑÐ°ÑÐ¸Ð¸</div>
+          <div class="summary-metric-value" id="sm-regs">â</div>
           <div class="summary-metric-sub" id="sm-regs-sub"></div>
         </div>
         <div class="summary-metric">
-          <div class="summary-metric-label">Первые депозиты</div>
-          <div class="summary-metric-value" id="sm-fd">—</div>
+          <div class="summary-metric-label">ÐÐµÑÐ²ÑÐµ Ð´ÐµÐ¿Ð¾Ð·Ð¸ÑÑ</div>
+          <div class="summary-metric-value" id="sm-fd">â</div>
           <div class="summary-metric-sub" id="sm-fd-sub"></div>
         </div>
         <div class="summary-metric">
-          <div class="summary-metric-label">Ср. конверсия (FD/Regs)</div>
-          <div class="summary-metric-value" id="sm-conv">—</div>
+          <div class="summary-metric-label">Ð¡Ñ. ÐºÐ¾Ð½Ð²ÐµÑÑÐ¸Ñ (FD/Regs)</div>
+          <div class="summary-metric-value" id="sm-conv">â</div>
         </div>
         <div class="summary-metric">
-          <div class="summary-metric-label">Маржа (NGR/GGR)</div>
-          <div class="summary-metric-value" id="sm-margin">—</div>
+          <div class="summary-metric-label">ÐÐ°ÑÐ¶Ð° (NGR/GGR)</div>
+          <div class="summary-metric-value" id="sm-margin">â</div>
         </div>
       </div>
       <div class="summary-text">
-        <div class="summary-text-title">🤖 AI Общий вывод</div>
-        <p id="summary-ai-text">Загрузка...</p>
+        <div class="summary-text-title">ð¤ AI ÐÐ±ÑÐ¸Ð¹ Ð²ÑÐ²Ð¾Ð´</div>
+        <p id="summary-ai-text">ÐÐ°Ð³ÑÑÐ·ÐºÐ°...</p>
       </div>
     </div>
 
@@ -676,10 +680,10 @@
           <div class="chart-subtitle">Daily registrations and unique players</div>
         </div>
         <div class="period-filters">
-          <button class="period-btn active" onclick="setPeriod(0, 'all')">Всё время</button>
-          <button class="period-btn" onclick="setPeriod(0, '30d')">30 дней</button>
-          <button class="period-btn" onclick="setPeriod(0, '7d')">7 дней</button>
-          <button class="period-btn" onclick="setPeriod(0, 'yesterday')">Вчера</button>
+          <button class="period-btn active" onclick="setPeriod(0, 'all')">ÐÑÑ Ð²ÑÐµÐ¼Ñ</button>
+          <button class="period-btn" onclick="setPeriod(0, '30d')">30 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(0, '7d')">7 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(0, 'yesterday')">ÐÑÐµÑÐ°</button>
         </div>
         <div class="yesterday-stat" id="yesterday-stat-0">
           <div class="yesterday-stat-value" id="yesterday-value-0">0</div>
@@ -690,12 +694,12 @@
         </div>
         <div class="chart-analysis">
           <div class="analysis-block technical-analysis">
-            <div class="analysis-label">🔧 Технический анализ</div>
+            <div class="analysis-label">ð§ Ð¢ÐµÑÐ½Ð¸ÑÐµÑÐºÐ¸Ð¹ Ð°Ð½Ð°Ð»Ð¸Ð·</div>
             <div id="tech-analysis-0">Loading...</div>
           </div>
           <div class="analysis-block ai-analysis">
-            <div class="analysis-label">🤖 AI Анализ</div>
-            <p>Платформа демонстрирует стабильный рост пользовательской базы. Средний показатель привлечения составляет ~24 регистрации в день с пиковыми всплесками до 107, что свидетельствует об эффективных маркетинговых кампаниях. Соотношение уникальных пользователей к регистрациям указывает на высокую лояльность аудитории.</p>
+            <div class="analysis-label">ð¤ AI ÐÐ½Ð°Ð»Ð¸Ð·</div>
+            <p>ÐÐ»Ð°ÑÑÐ¾ÑÐ¼Ð° Ð´ÐµÐ¼Ð¾Ð½ÑÑÑÐ¸ÑÑÐµÑ ÑÑÐ°Ð±Ð¸Ð»ÑÐ½ÑÐ¹ ÑÐ¾ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÑÑÐºÐ¾Ð¹ Ð±Ð°Ð·Ñ. Ð¡ÑÐµÐ´Ð½Ð¸Ð¹ Ð¿Ð¾ÐºÐ°Ð·Ð°ÑÐµÐ»Ñ Ð¿ÑÐ¸Ð²Ð»ÐµÑÐµÐ½Ð¸Ñ ÑÐ¾ÑÑÐ°Ð²Ð»ÑÐµÑ ~24 ÑÐµÐ³Ð¸ÑÑÑÐ°ÑÐ¸Ð¸ Ð² Ð´ÐµÐ½Ñ Ñ Ð¿Ð¸ÐºÐ¾Ð²ÑÐ¼Ð¸ Ð²ÑÐ¿Ð»ÐµÑÐºÐ°Ð¼Ð¸ Ð´Ð¾ 107, ÑÑÐ¾ ÑÐ²Ð¸Ð´ÐµÑÐµÐ»ÑÑÑÐ²ÑÐµÑ Ð¾Ð± ÑÑÑÐµÐºÑÐ¸Ð²Ð½ÑÑ Ð¼Ð°ÑÐºÐµÑÐ¸Ð½Ð³Ð¾Ð²ÑÑ ÐºÐ°Ð¼Ð¿Ð°Ð½Ð¸ÑÑ. Ð¡Ð¾Ð¾ÑÐ½Ð¾ÑÐµÐ½Ð¸Ðµ ÑÐ½Ð¸ÐºÐ°Ð»ÑÐ½ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¹ Ðº ÑÐµÐ³Ð¸ÑÑÑÐ°ÑÐ¸ÑÐ¼ ÑÐºÐ°Ð·ÑÐ²Ð°ÐµÑ Ð½Ð° Ð²ÑÑÐ¾ÐºÑÑ Ð»Ð¾ÑÐ»ÑÐ½Ð¾ÑÑÑ Ð°ÑÐ´Ð¸ÑÐ¾ÑÐ¸Ð¸.</p>
           </div>
         </div>
       </div>
@@ -707,13 +711,13 @@
           <div class="chart-subtitle">Deposit count and sum dynamics</div>
         </div>
         <div class="period-filters">
-          <button class="period-btn active" onclick="setPeriod(1, 'all')">Всё время</button>
-          <button class="period-btn" onclick="setPeriod(1, '30d')">30 дней</button>
-          <button class="period-btn" onclick="setPeriod(1, '7d')">7 дней</button>
-          <button class="period-btn" onclick="setPeriod(1, 'yesterday')">Вчера</button>
+          <button class="period-btn active" onclick="setPeriod(1, 'all')">ÐÑÑ Ð²ÑÐµÐ¼Ñ</button>
+          <button class="period-btn" onclick="setPeriod(1, '30d')">30 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(1, '7d')">7 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(1, 'yesterday')">ÐÑÐµÑÐ°</button>
         </div>
         <div class="yesterday-stat" id="yesterday-stat-1">
-          <div class="yesterday-stat-value" id="yesterday-value-1">€0.00</div>
+          <div class="yesterday-stat-value" id="yesterday-value-1">â¬0.00</div>
           <div class="yesterday-stat-label">deposit sum yesterday</div>
         </div>
         <div class="chart-container">
@@ -721,12 +725,12 @@
         </div>
         <div class="chart-analysis">
           <div class="analysis-block technical-analysis">
-            <div class="analysis-label">🔧 Технический анализ</div>
+            <div class="analysis-label">ð§ Ð¢ÐµÑÐ½Ð¸ÑÐµÑÐºÐ¸Ð¹ Ð°Ð½Ð°Ð»Ð¸Ð·</div>
             <div id="tech-analysis-1">Loading...</div>
           </div>
           <div class="analysis-block ai-analysis">
-            <div class="analysis-label">🤖 AI Анализ</div>
-            <p>Динамика первичных платежей показывает устойчивый поток новых платящих клиентов. Средний чек первого депозита демонстрирует значительную вариативность — от минимальных до крупных транзакций, что говорит о широком охвате клиентских сегментов.</p>
+            <div class="analysis-label">ð¤ AI ÐÐ½Ð°Ð»Ð¸Ð·</div>
+            <p>ÐÐ¸Ð½Ð°Ð¼Ð¸ÐºÐ° Ð¿ÐµÑÐ²Ð¸ÑÐ½ÑÑ Ð¿Ð»Ð°ÑÐµÐ¶ÐµÐ¹ Ð¿Ð¾ÐºÐ°Ð·ÑÐ²Ð°ÐµÑ ÑÑÑÐ¾Ð¹ÑÐ¸Ð²ÑÐ¹ Ð¿Ð¾ÑÐ¾Ðº Ð½Ð¾Ð²ÑÑ Ð¿Ð»Ð°ÑÑÑÐ¸Ñ ÐºÐ»Ð¸ÐµÐ½ÑÐ¾Ð². Ð¡ÑÐµÐ´Ð½Ð¸Ð¹ ÑÐµÐº Ð¿ÐµÑÐ²Ð¾Ð³Ð¾ Ð´ÐµÐ¿Ð¾Ð·Ð¸ÑÐ° Ð´ÐµÐ¼Ð¾Ð½ÑÑÑÐ¸ÑÑÐµÑ Ð·Ð½Ð°ÑÐ¸ÑÐµÐ»ÑÐ½ÑÑ Ð²Ð°ÑÐ¸Ð°ÑÐ¸Ð²Ð½Ð¾ÑÑÑ â Ð¾Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑÐ½ÑÑ Ð´Ð¾ ÐºÑÑÐ¿Ð½ÑÑ ÑÑÐ°Ð½Ð·Ð°ÐºÑÐ¸Ð¹, ÑÑÐ¾ Ð³Ð¾Ð²Ð¾ÑÐ¸Ñ Ð¾ ÑÐ¸ÑÐ¾ÐºÐ¾Ð¼ Ð¾ÑÐ²Ð°ÑÐµ ÐºÐ»Ð¸ÐµÐ½ÑÑÐºÐ¸Ñ ÑÐµÐ³Ð¼ÐµÐ½ÑÐ¾Ð².</p>
           </div>
         </div>
       </div>
@@ -738,13 +742,13 @@
           <div class="chart-subtitle">Deposits vs withdrawals</div>
         </div>
         <div class="period-filters">
-          <button class="period-btn active" onclick="setPeriod(2, 'all')">Всё время</button>
-          <button class="period-btn" onclick="setPeriod(2, '30d')">30 дней</button>
-          <button class="period-btn" onclick="setPeriod(2, '7d')">7 дней</button>
-          <button class="period-btn" onclick="setPeriod(2, 'yesterday')">Вчера</button>
+          <button class="period-btn active" onclick="setPeriod(2, 'all')">ÐÑÑ Ð²ÑÐµÐ¼Ñ</button>
+          <button class="period-btn" onclick="setPeriod(2, '30d')">30 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(2, '7d')">7 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(2, 'yesterday')">ÐÑÐµÑÐ°</button>
         </div>
         <div class="yesterday-stat" id="yesterday-stat-2">
-          <div class="yesterday-stat-value" id="yesterday-value-2">€0.00</div>
+          <div class="yesterday-stat-value" id="yesterday-value-2">â¬0.00</div>
           <div class="yesterday-stat-label">net flow yesterday</div>
         </div>
         <div class="chart-container">
@@ -752,12 +756,12 @@
         </div>
         <div class="chart-analysis">
           <div class="analysis-block technical-analysis">
-            <div class="analysis-label">🔧 Технический анализ</div>
+            <div class="analysis-label">ð§ Ð¢ÐµÑÐ½Ð¸ÑÐµÑÐºÐ¸Ð¹ Ð°Ð½Ð°Ð»Ð¸Ð·</div>
             <div id="tech-analysis-2">Loading...</div>
           </div>
           <div class="analysis-block ai-analysis">
-            <div class="analysis-label">🤖 AI Анализ</div>
-            <p>Денежный поток платформы сохраняет положительную динамику: объём входящих транзакций стабильно превышает исходящие. Рост депозитов в марте свидетельствует об усилении финансовой активности пользователей.</p>
+            <div class="analysis-label">ð¤ AI ÐÐ½Ð°Ð»Ð¸Ð·</div>
+            <p>ÐÐµÐ½ÐµÐ¶Ð½ÑÐ¹ Ð¿Ð¾ÑÐ¾Ðº Ð¿Ð»Ð°ÑÑÐ¾ÑÐ¼Ñ ÑÐ¾ÑÑÐ°Ð½ÑÐµÑ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸ÑÐµÐ»ÑÐ½ÑÑ Ð´Ð¸Ð½Ð°Ð¼Ð¸ÐºÑ: Ð¾Ð±ÑÑÐ¼ Ð²ÑÐ¾Ð´ÑÑÐ¸Ñ ÑÑÐ°Ð½Ð·Ð°ÐºÑÐ¸Ð¹ ÑÑÐ°Ð±Ð¸Ð»ÑÐ½Ð¾ Ð¿ÑÐµÐ²ÑÑÐ°ÐµÑ Ð¸ÑÑÐ¾Ð´ÑÑÐ¸Ðµ. Ð Ð¾ÑÑ Ð´ÐµÐ¿Ð¾Ð·Ð¸ÑÐ¾Ð² Ð² Ð¼Ð°ÑÑÐµ ÑÐ²Ð¸Ð´ÐµÑÐµÐ»ÑÑÑÐ²ÑÐµÑ Ð¾Ð± ÑÑÐ¸Ð»ÐµÐ½Ð¸Ð¸ ÑÐ¸Ð½Ð°Ð½ÑÐ¾Ð²Ð¾Ð¹ Ð°ÐºÑÐ¸Ð²Ð½Ð¾ÑÑÐ¸ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¹.</p>
           </div>
         </div>
       </div>
@@ -769,13 +773,13 @@
           <div class="chart-subtitle">Casino vs Sports revenue</div>
         </div>
         <div class="period-filters">
-          <button class="period-btn active" onclick="setPeriod(3, 'all')">Всё время</button>
-          <button class="period-btn" onclick="setPeriod(3, '30d')">30 дней</button>
-          <button class="period-btn" onclick="setPeriod(3, '7d')">7 дней</button>
-          <button class="period-btn" onclick="setPeriod(3, 'yesterday')">Вчера</button>
+          <button class="period-btn active" onclick="setPeriod(3, 'all')">ÐÑÑ Ð²ÑÐµÐ¼Ñ</button>
+          <button class="period-btn" onclick="setPeriod(3, '30d')">30 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(3, '7d')">7 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(3, 'yesterday')">ÐÑÐµÑÐ°</button>
         </div>
         <div class="yesterday-stat" id="yesterday-stat-3">
-          <div class="yesterday-stat-value" id="yesterday-value-3">€0.00</div>
+          <div class="yesterday-stat-value" id="yesterday-value-3">â¬0.00</div>
           <div class="yesterday-stat-label">total GGR yesterday</div>
         </div>
         <div class="chart-container">
@@ -783,12 +787,12 @@
         </div>
         <div class="chart-analysis">
           <div class="analysis-block technical-analysis">
-            <div class="analysis-label">🔧 Технический анализ</div>
+            <div class="analysis-label">ð§ Ð¢ÐµÑÐ½Ð¸ÑÐµÑÐºÐ¸Ð¹ Ð°Ð½Ð°Ð»Ð¸Ð·</div>
             <div id="tech-analysis-3">Loading...</div>
           </div>
           <div class="analysis-block ai-analysis">
-            <div class="analysis-label">🤖 AI Анализ</div>
-            <p>Основной сегмент доходности — казино-направление, обеспечивающее более 80% валовой выручки. Спортивное направление начало генерировать значимую выручку с начала марта, что создаёт базу для диверсификации доходов.</p>
+            <div class="analysis-label">ð¤ AI ÐÐ½Ð°Ð»Ð¸Ð·</div>
+            <p>ÐÑÐ½Ð¾Ð²Ð½Ð¾Ð¹ ÑÐµÐ³Ð¼ÐµÐ½Ñ Ð´Ð¾ÑÐ¾Ð´Ð½Ð¾ÑÑÐ¸ â ÐºÐ°Ð·Ð¸Ð½Ð¾-Ð½Ð°Ð¿ÑÐ°Ð²Ð»ÐµÐ½Ð¸Ðµ, Ð¾Ð±ÐµÑÐ¿ÐµÑÐ¸Ð²Ð°ÑÑÐµÐµ Ð±Ð¾Ð»ÐµÐµ 80% Ð²Ð°Ð»Ð¾Ð²Ð¾Ð¹ Ð²ÑÑÑÑÐºÐ¸. Ð¡Ð¿Ð¾ÑÑÐ¸Ð²Ð½Ð¾Ðµ Ð½Ð°Ð¿ÑÐ°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½Ð°ÑÐ°Ð»Ð¾ Ð³ÐµÐ½ÐµÑÐ¸ÑÐ¾Ð²Ð°ÑÑ Ð·Ð½Ð°ÑÐ¸Ð¼ÑÑ Ð²ÑÑÑÑÐºÑ Ñ Ð½Ð°ÑÐ°Ð»Ð° Ð¼Ð°ÑÑÐ°, ÑÑÐ¾ ÑÐ¾Ð·Ð´Ð°ÑÑ Ð±Ð°Ð·Ñ Ð´Ð»Ñ Ð´Ð¸Ð²ÐµÑÑÐ¸ÑÐ¸ÐºÐ°ÑÐ¸Ð¸ Ð´Ð¾ÑÐ¾Ð´Ð¾Ð².</p>
           </div>
         </div>
       </div>
@@ -800,13 +804,13 @@
           <div class="chart-subtitle">Gross vs net revenue trend</div>
         </div>
         <div class="period-filters">
-          <button class="period-btn active" onclick="setPeriod(4, 'all')">Всё время</button>
-          <button class="period-btn" onclick="setPeriod(4, '30d')">30 дней</button>
-          <button class="period-btn" onclick="setPeriod(4, '7d')">7 дней</button>
-          <button class="period-btn" onclick="setPeriod(4, 'yesterday')">Вчера</button>
+          <button class="period-btn active" onclick="setPeriod(4, 'all')">ÐÑÑ Ð²ÑÐµÐ¼Ñ</button>
+          <button class="period-btn" onclick="setPeriod(4, '30d')">30 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(4, '7d')">7 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(4, 'yesterday')">ÐÑÐµÑÐ°</button>
         </div>
         <div class="yesterday-stat" id="yesterday-stat-4">
-          <div class="yesterday-stat-value" id="yesterday-value-4">€0.00</div>
+          <div class="yesterday-stat-value" id="yesterday-value-4">â¬0.00</div>
           <div class="yesterday-stat-label">GGR yesterday</div>
         </div>
         <div class="chart-container">
@@ -814,12 +818,12 @@
         </div>
         <div class="chart-analysis">
           <div class="analysis-block technical-analysis">
-            <div class="analysis-label">🔧 Технический анализ</div>
+            <div class="analysis-label">ð§ Ð¢ÐµÑÐ½Ð¸ÑÐµÑÐºÐ¸Ð¹ Ð°Ð½Ð°Ð»Ð¸Ð·</div>
             <div id="tech-analysis-4">Loading...</div>
           </div>
           <div class="analysis-block ai-analysis">
-            <div class="analysis-label">🤖 AI Анализ</div>
-            <p>Чистая выручка (NGR) стабильно следует за валовой (GGR), что указывает на контролируемый уровень операционных расходов. Маржинальность платформы остаётся высокой, что подтверждает эффективность бизнес-модели.</p>
+            <div class="analysis-label">ð¤ AI ÐÐ½Ð°Ð»Ð¸Ð·</div>
+            <p>Ð§Ð¸ÑÑÐ°Ñ Ð²ÑÑÑÑÐºÐ° (NGR) ÑÑÐ°Ð±Ð¸Ð»ÑÐ½Ð¾ ÑÐ»ÐµÐ´ÑÐµÑ Ð·Ð° Ð²Ð°Ð»Ð¾Ð²Ð¾Ð¹ (GGR), ÑÑÐ¾ ÑÐºÐ°Ð·ÑÐ²Ð°ÐµÑ Ð½Ð° ÐºÐ¾Ð½ÑÑÐ¾Ð»Ð¸ÑÑÐµÐ¼ÑÐ¹ ÑÑÐ¾Ð²ÐµÐ½Ñ Ð¾Ð¿ÐµÑÐ°ÑÐ¸Ð¾Ð½Ð½ÑÑ ÑÐ°ÑÑÐ¾Ð´Ð¾Ð². ÐÐ°ÑÐ¶Ð¸Ð½Ð°Ð»ÑÐ½Ð¾ÑÑÑ Ð¿Ð»Ð°ÑÑÐ¾ÑÐ¼Ñ Ð¾ÑÑÐ°ÑÑÑÑ Ð²ÑÑÐ¾ÐºÐ¾Ð¹, ÑÑÐ¾ Ð¿Ð¾Ð´ÑÐ²ÐµÑÐ¶Ð´Ð°ÐµÑ ÑÑÑÐµÐºÑÐ¸Ð²Ð½Ð¾ÑÑÑ Ð±Ð¸Ð·Ð½ÐµÑ-Ð¼Ð¾Ð´ÐµÐ»Ð¸.</p>
           </div>
         </div>
       </div>
@@ -831,10 +835,10 @@
           <div class="chart-subtitle">First deposit conversion %</div>
         </div>
         <div class="period-filters">
-          <button class="period-btn active" onclick="setPeriod(5, 'all')">Всё время</button>
-          <button class="period-btn" onclick="setPeriod(5, '30d')">30 дней</button>
-          <button class="period-btn" onclick="setPeriod(5, '7d')">7 дней</button>
-          <button class="period-btn" onclick="setPeriod(5, 'yesterday')">Вчера</button>
+          <button class="period-btn active" onclick="setPeriod(5, 'all')">ÐÑÑ Ð²ÑÐµÐ¼Ñ</button>
+          <button class="period-btn" onclick="setPeriod(5, '30d')">30 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(5, '7d')">7 Ð´Ð½ÐµÐ¹</button>
+          <button class="period-btn" onclick="setPeriod(5, 'yesterday')">ÐÑÐµÑÐ°</button>
         </div>
         <div class="yesterday-stat" id="yesterday-stat-5">
           <div class="yesterday-stat-value" id="yesterday-value-5">0.00%</div>
@@ -845,12 +849,12 @@
         </div>
         <div class="chart-analysis">
           <div class="analysis-block technical-analysis">
-            <div class="analysis-label">🔧 Технический анализ</div>
+            <div class="analysis-label">ð§ Ð¢ÐµÑÐ½Ð¸ÑÐµÑÐºÐ¸Ð¹ Ð°Ð½Ð°Ð»Ð¸Ð·</div>
             <div id="tech-analysis-5">Loading...</div>
           </div>
           <div class="analysis-block ai-analysis">
-            <div class="analysis-label">🤖 AI Анализ</div>
-            <p>Конверсия новых пользователей в платящих клиентов стабильно держится в диапазоне 15–30%, что является хорошим показателем для отрасли. Пиковые значения конверсии совпадают с периодами активного привлечения.</p>
+            <div class="analysis-label">ð¤ AI ÐÐ½Ð°Ð»Ð¸Ð·</div>
+            <p>ÐÐ¾Ð½Ð²ÐµÑÑÐ¸Ñ Ð½Ð¾Ð²ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¹ Ð² Ð¿Ð»Ð°ÑÑÑÐ¸Ñ ÐºÐ»Ð¸ÐµÐ½ÑÐ¾Ð² ÑÑÐ°Ð±Ð¸Ð»ÑÐ½Ð¾ Ð´ÐµÑÐ¶Ð¸ÑÑÑ Ð² Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ðµ 15â30%, ÑÑÐ¾ ÑÐ²Ð»ÑÐµÑÑÑ ÑÐ¾ÑÐ¾ÑÐ¸Ð¼ Ð¿Ð¾ÐºÐ°Ð·Ð°ÑÐµÐ»ÐµÐ¼ Ð´Ð»Ñ Ð¾ÑÑÐ°ÑÐ»Ð¸. ÐÐ¸ÐºÐ¾Ð²ÑÐµ Ð·Ð½Ð°ÑÐµÐ½Ð¸Ñ ÐºÐ¾Ð½Ð²ÐµÑÑÐ¸Ð¸ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑÑ Ñ Ð¿ÐµÑÐ¸Ð¾Ð´Ð°Ð¼Ð¸ Ð°ÐºÑÐ¸Ð²Ð½Ð¾Ð³Ð¾ Ð¿ÑÐ¸Ð²Ð»ÐµÑÐµÐ½Ð¸Ñ.</p>
           </div>
         </div>
       </div>
@@ -858,7 +862,7 @@
 
     <!-- Footer -->
     <div class="footer">
-      Kuki Analytics Dashboard • Data: 01.02.2026 — 16.03.2026
+      Kuki Analytics Dashboard â¢ Data: 01.02.2026 â 16.03.2026
     </div>
   </div>
 
@@ -896,7 +900,7 @@
         window.dispatchEvent(new Event('dashboard-ready'));
       } else {
         input.classList.add('error');
-        error.textContent = 'Неверный пароль. Попробуйте ещё раз.';
+        error.textContent = 'ÐÐµÐ²ÐµÑÐ½ÑÐ¹ Ð¿Ð°ÑÐ¾Ð»Ñ. ÐÐ¾Ð¿ÑÐ¾Ð±ÑÐ¹ÑÐµ ÐµÑÑ ÑÐ°Ð·.';
         setTimeout(() => input.classList.remove('error'), 400);
     }
 
@@ -1112,7 +1116,7 @@
                 yAxisID: 'y'
               },
               {
-                label: 'Deposit Sum (€)',
+                label: 'Deposit Sum (â¬)',
                 data: DATA.map(d => d.fd_sum),
                 type: 'line',
                 borderColor: '#f43f5e',
@@ -1304,10 +1308,10 @@
       const min = Math.min(...values);
       const max = Math.max(...values);
       const avg = (values.reduce((a, b) => a + b) / values.length).toFixed(2);
-      let trend = '→';
+      let trend = 'â';
       if (values.length > 1) {
         const change = ((values[values.length - 1] - values[0]) / Math.abs(values[0] || 1)) * 100;
-        trend = change > 0 ? '↑' : change < 0 ? '↓' : '→';
+        trend = change > 0 ? 'â' : change < 0 ? 'â' : 'â';
       }
 
       const html = `Min: ${min.toFixed(2)} | Max: ${max.toFixed(2)} | Avg: ${avg} | Trend: ${trend}`;
@@ -1321,8 +1325,8 @@
       const totalRegs = filtered.reduce((s, d) => s + d.regs, 0);
       const avgConversion = filtered.reduce((s, d) => s + d.fd_regs, 0) / filtered.length;
 
-      document.getElementById('kpi-total-ggr').textContent = '€' + formatEUR(totalGGR);
-      document.getElementById('kpi-avg-ggr').textContent = '€' + formatEUR(avgGGR);
+      document.getElementById('kpi-total-ggr').textContent = 'â¬' + formatEUR(totalGGR);
+      document.getElementById('kpi-avg-ggr').textContent = 'â¬' + formatEUR(avgGGR);
       document.getElementById('kpi-total-regs').textContent = totalRegs.toString();
       document.getElementById('kpi-avg-conversion').textContent = avgConversion.toFixed(2) + '%';
     }
@@ -1344,35 +1348,35 @@
 
       // Period label
       const periodLabels = {
-        'all': `Весь период: 01.02.2026 — 16.03.2026 (${days} дн.)`,
-        '30d': `Последние 30 дней (${days} дн.)`,
-        '7d': `Последние 7 дней (${days} дн.)`,
-        'yesterday': `Вчера: ${filtered[0] ? formatDate(filtered[0].date) : '—'}`
+        'all': `ÐÐµÑÑ Ð¿ÐµÑÐ¸Ð¾Ð´: 01.02.2026 â 16.03.2026 (${days} Ð´Ð½.)`,
+        '30d': `ÐÐ¾ÑÐ»ÐµÐ´Ð½Ð¸Ðµ 30 Ð´Ð½ÐµÐ¹ (${days} Ð´Ð½.)`,
+        '7d': `ÐÐ¾ÑÐ»ÐµÐ´Ð½Ð¸Ðµ 7 Ð´Ð½ÐµÐ¹ (${days} Ð´Ð½.)`,
+        'yesterday': `ÐÑÐµÑÐ°: ${filtered[0] ? formatDate(filtered[0].date) : 'â'}`
       };
       document.getElementById('summary-period-label').textContent = periodLabels[period || 'all'];
 
       // Values
       const el = id => document.getElementById(id);
-      el('sm-total-ggr').textContent = '€' + formatEUR(totalGGR);
+      el('sm-total-ggr').textContent = 'â¬' + formatEUR(totalGGR);
       el('sm-total-ggr').className = 'summary-metric-value ' + (totalGGR >= 0 ? 'positive' : 'negative');
-      el('sm-total-ggr-sub').textContent = 'Среднее в день: €' + formatEUR(days ? totalGGR/days : 0);
+      el('sm-total-ggr-sub').textContent = 'Ð¡ÑÐµÐ´Ð½ÐµÐµ Ð² Ð´ÐµÐ½Ñ: â¬' + formatEUR(days ? totalGGR/days : 0);
 
-      el('sm-total-ngr').textContent = '€' + formatEUR(totalNGR);
+      el('sm-total-ngr').textContent = 'â¬' + formatEUR(totalNGR);
       el('sm-total-ngr').className = 'summary-metric-value ' + (totalNGR >= 0 ? 'positive' : 'negative');
-      el('sm-total-ngr-sub').textContent = 'Среднее в день: €' + formatEUR(days ? totalNGR/days : 0);
+      el('sm-total-ngr-sub').textContent = 'Ð¡ÑÐµÐ´Ð½ÐµÐµ Ð² Ð´ÐµÐ½Ñ: â¬' + formatEUR(days ? totalNGR/days : 0);
 
-      el('sm-deps').textContent = '€' + formatEUR(totalDeps);
+      el('sm-deps').textContent = 'â¬' + formatEUR(totalDeps);
       el('sm-deps').className = 'summary-metric-value positive';
-      el('sm-deps-sub').textContent = 'Среднее в день: €' + formatEUR(days ? totalDeps/days : 0);
+      el('sm-deps-sub').textContent = 'Ð¡ÑÐµÐ´Ð½ÐµÐµ Ð² Ð´ÐµÐ½Ñ: â¬' + formatEUR(days ? totalDeps/days : 0);
 
-      el('sm-wdraw').textContent = '€' + formatEUR(totalWdraw);
-      el('sm-wdraw-sub').textContent = 'Чистый поток: €' + formatEUR(netFlow) + (netFlow >= 0 ? ' ↑' : ' ↓');
+      el('sm-wdraw').textContent = 'â¬' + formatEUR(totalWdraw);
+      el('sm-wdraw-sub').textContent = 'Ð§Ð¸ÑÑÑÐ¹ Ð¿Ð¾ÑÐ¾Ðº: â¬' + formatEUR(netFlow) + (netFlow >= 0 ? ' â' : ' â');
 
       el('sm-regs').textContent = totalRegs;
-      el('sm-regs-sub').textContent = 'Среднее в день: ' + (days ? (totalRegs/days).toFixed(1) : '0');
+      el('sm-regs-sub').textContent = 'Ð¡ÑÐµÐ´Ð½ÐµÐµ Ð² Ð´ÐµÐ½Ñ: ' + (days ? (totalRegs/days).toFixed(1) : '0');
 
-      el('sm-fd').textContent = totalFD + ' шт.';
-      el('sm-fd-sub').textContent = 'На сумму: €' + formatEUR(totalFDSum);
+      el('sm-fd').textContent = totalFD + ' ÑÑ.';
+      el('sm-fd-sub').textContent = 'ÐÐ° ÑÑÐ¼Ð¼Ñ: â¬' + formatEUR(totalFDSum);
 
       el('sm-conv').textContent = avgConv.toFixed(1) + '%';
 
@@ -1387,26 +1391,26 @@
     function generateAISummary(data, period, totalGGR, totalNGR, totalDeps, totalWdraw, totalRegs, totalFD, avgConv, margin, netFlow, days) {
       if (period === 'yesterday') {
         const d = data[0];
-        if (!d) return 'Нет данных.';
-        const ggrStatus = d.t_ggr >= 3000 ? 'высоким' : d.t_ggr >= 1000 ? 'средним' : d.t_ggr >= 0 ? 'умеренным' : 'отрицательным';
-        return `Вчера платформа зафиксировала ${d.regs} новых регистраций и ${d.fd_count} первичных платежей. Валовый доход (GGR) составил €${formatEUR(d.t_ggr)}, что является ${ggrStatus} показателем. Объём входящих транзакций — €${formatEUR(d.deps)}, исходящих — €${formatEUR(d.wdraw)}.`;
+        if (!d) return 'ÐÐµÑ Ð´Ð°Ð½Ð½ÑÑ.';
+        const ggrStatus = d.t_ggr >= 3000 ? 'Ð²ÑÑÐ¾ÐºÐ¸Ð¼' : d.t_ggr >= 1000 ? 'ÑÑÐµÐ´Ð½Ð¸Ð¼' : d.t_ggr >= 0 ? 'ÑÐ¼ÐµÑÐµÐ½Ð½ÑÐ¼' : 'Ð¾ÑÑÐ¸ÑÐ°ÑÐµÐ»ÑÐ½ÑÐ¼';
+        return `ÐÑÐµÑÐ° Ð¿Ð»Ð°ÑÑÐ¾ÑÐ¼Ð° Ð·Ð°ÑÐ¸ÐºÑÐ¸ÑÐ¾Ð²Ð°Ð»Ð° ${d.regs} Ð½Ð¾Ð²ÑÑ ÑÐµÐ³Ð¸ÑÑÑÐ°ÑÐ¸Ð¹ Ð¸ ${d.fd_count} Ð¿ÐµÑÐ²Ð¸ÑÐ½ÑÑ Ð¿Ð»Ð°ÑÐµÐ¶ÐµÐ¹. ÐÐ°Ð»Ð¾Ð²ÑÐ¹ Ð´Ð¾ÑÐ¾Ð´ (GGR) ÑÐ¾ÑÑÐ°Ð²Ð¸Ð» â¬${formatEUR(d.t_ggr)}, ÑÑÐ¾ ÑÐ²Ð»ÑÐµÑÑÑ ${ggrStatus} Ð¿Ð¾ÐºÐ°Ð·Ð°ÑÐµÐ»ÐµÐ¼. ÐÐ±ÑÑÐ¼ Ð²ÑÐ¾Ð´ÑÑÐ¸Ñ ÑÑÐ°Ð½Ð·Ð°ÐºÑÐ¸Ð¹ â â¬${formatEUR(d.deps)}, Ð¸ÑÑÐ¾Ð´ÑÑÐ¸Ñ â â¬${formatEUR(d.wdraw)}.`;
       }
 
-      const periodName = period === '7d' ? 'За последнюю неделю' : period === '30d' ? 'За последние 30 дней' : 'За весь анализируемый период';
+      const periodName = period === '7d' ? 'ÐÐ° Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÑÑ Ð½ÐµÐ´ÐµÐ»Ñ' : period === '30d' ? 'ÐÐ° Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ðµ 30 Ð´Ð½ÐµÐ¹' : 'ÐÐ° Ð²ÐµÑÑ Ð°Ð½Ð°Ð»Ð¸Ð·Ð¸ÑÑÐµÐ¼ÑÐ¹ Ð¿ÐµÑÐ¸Ð¾Ð´';
       const ggrTrend = data.length > 7 ? (() => {
         const half = Math.floor(data.length / 2);
         const first = data.slice(0, half).reduce((s,d) => s + d.t_ggr, 0) / half;
         const second = data.slice(half).reduce((s,d) => s + d.t_ggr, 0) / (data.length - half);
-        return second > first ? 'восходящую' : 'нисходящую';
-      })() : 'стабильную';
+        return second > first ? 'Ð²Ð¾ÑÑÐ¾Ð´ÑÑÑÑ' : 'Ð½Ð¸ÑÑÐ¾Ð´ÑÑÑÑ';
+      })() : 'ÑÑÐ°Ð±Ð¸Ð»ÑÐ½ÑÑ';
 
-      const flowStatus = netFlow > 0 ? `Чистый денежный поток положительный (€${formatEUR(netFlow)}), что указывает на здоровую экономику платформы.` : `Чистый денежный поток отрицательный (€${formatEUR(netFlow)}), что требует внимания к управлению ликвидностью.`;
+      const flowStatus = netFlow > 0 ? `Ð§Ð¸ÑÑÑÐ¹ Ð´ÐµÐ½ÐµÐ¶Ð½ÑÐ¹ Ð¿Ð¾ÑÐ¾Ðº Ð¿Ð¾Ð»Ð¾Ð¶Ð¸ÑÐµÐ»ÑÐ½ÑÐ¹ (â¬${formatEUR(netFlow)}), ÑÑÐ¾ ÑÐºÐ°Ð·ÑÐ²Ð°ÐµÑ Ð½Ð° Ð·Ð´Ð¾ÑÐ¾Ð²ÑÑ ÑÐºÐ¾Ð½Ð¾Ð¼Ð¸ÐºÑ Ð¿Ð»Ð°ÑÑÐ¾ÑÐ¼Ñ.` : `Ð§Ð¸ÑÑÑÐ¹ Ð´ÐµÐ½ÐµÐ¶Ð½ÑÐ¹ Ð¿Ð¾ÑÐ¾Ðº Ð¾ÑÑÐ¸ÑÐ°ÑÐµÐ»ÑÐ½ÑÐ¹ (â¬${formatEUR(netFlow)}), ÑÑÐ¾ ÑÑÐµÐ±ÑÐµÑ Ð²Ð½Ð¸Ð¼Ð°Ð½Ð¸Ñ Ðº ÑÐ¿ÑÐ°Ð²Ð»ÐµÐ½Ð¸Ñ Ð»Ð¸ÐºÐ²Ð¸Ð´Ð½Ð¾ÑÑÑÑ.`;
 
-      const convStatus = avgConv > 20 ? 'высокий уровень конверсии новых пользователей в платящих клиентов' : avgConv > 10 ? 'стабильный уровень конверсии' : 'умеренный уровень конверсии, есть потенциал для оптимизации';
+      const convStatus = avgConv > 20 ? 'Ð²ÑÑÐ¾ÐºÐ¸Ð¹ ÑÑÐ¾Ð²ÐµÐ½Ñ ÐºÐ¾Ð½Ð²ÐµÑÑÐ¸Ð¸ Ð½Ð¾Ð²ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¹ Ð² Ð¿Ð»Ð°ÑÑÑÐ¸Ñ ÐºÐ»Ð¸ÐµÐ½ÑÐ¾Ð²' : avgConv > 10 ? 'ÑÑÐ°Ð±Ð¸Ð»ÑÐ½ÑÐ¹ ÑÑÐ¾Ð²ÐµÐ½Ñ ÐºÐ¾Ð½Ð²ÐµÑÑÐ¸Ð¸' : 'ÑÐ¼ÐµÑÐµÐ½Ð½ÑÐ¹ ÑÑÐ¾Ð²ÐµÐ½Ñ ÐºÐ¾Ð½Ð²ÐµÑÑÐ¸Ð¸, ÐµÑÑÑ Ð¿Ð¾ÑÐµÐ½ÑÐ¸Ð°Ð» Ð´Ð»Ñ Ð¾Ð¿ÑÐ¸Ð¼Ð¸Ð·Ð°ÑÐ¸Ð¸';
 
-      const marginStatus = margin > 80 ? 'Маржинальность бизнеса отличная' : margin > 60 ? 'Маржинальность бизнеса хорошая' : margin > 40 ? 'Маржинальность умеренная' : 'Маржинальность требует внимания';
+      const marginStatus = margin > 80 ? 'ÐÐ°ÑÐ¶Ð¸Ð½Ð°Ð»ÑÐ½Ð¾ÑÑÑ Ð±Ð¸Ð·Ð½ÐµÑÐ° Ð¾ÑÐ»Ð¸ÑÐ½Ð°Ñ' : margin > 60 ? 'ÐÐ°ÑÐ¶Ð¸Ð½Ð°Ð»ÑÐ½Ð¾ÑÑÑ Ð±Ð¸Ð·Ð½ÐµÑÐ° ÑÐ¾ÑÐ¾ÑÐ°Ñ' : margin > 40 ? 'ÐÐ°ÑÐ¶Ð¸Ð½Ð°Ð»ÑÐ½Ð¾ÑÑÑ ÑÐ¼ÐµÑÐµÐ½Ð½Ð°Ñ' : 'ÐÐ°ÑÐ¶Ð¸Ð½Ð°Ð»ÑÐ½Ð¾ÑÑÑ ÑÑÐµÐ±ÑÐµÑ Ð²Ð½Ð¸Ð¼Ð°Ð½Ð¸Ñ';
 
-      return `${periodName} платформа демонстрирует ${ggrTrend} динамику доходности. Совокупный GGR составил €${formatEUR(totalGGR)} (в среднем €${formatEUR(totalGGR/days)}/день), чистая выручка NGR — €${formatEUR(totalNGR)}. ${flowStatus} Зарегистрировано ${totalRegs} новых пользователей, из которых ${totalFD} совершили первый платёж, что обеспечивает ${convStatus} (${avgConv.toFixed(1)}%). ${marginStatus} — соотношение NGR к GGR составляет ${margin.toFixed(1)}%.`;
+      return `${periodName} Ð¿Ð»Ð°ÑÑÐ¾ÑÐ¼Ð° Ð´ÐµÐ¼Ð¾Ð½ÑÑÑÐ¸ÑÑÐµÑ ${ggrTrend} Ð´Ð¸Ð½Ð°Ð¼Ð¸ÐºÑ Ð´Ð¾ÑÐ¾Ð´Ð½Ð¾ÑÑÐ¸. Ð¡Ð¾Ð²Ð¾ÐºÑÐ¿Ð½ÑÐ¹ GGR ÑÐ¾ÑÑÐ°Ð²Ð¸Ð» â¬${formatEUR(totalGGR)} (Ð² ÑÑÐµÐ´Ð½ÐµÐ¼ â¬${formatEUR(totalGGR/days)}/Ð´ÐµÐ½Ñ), ÑÐ¸ÑÑÐ°Ñ Ð²ÑÑÑÑÐºÐ° NGR â â¬${formatEUR(totalNGR)}. ${flowStatus} ÐÐ°ÑÐµÐ³Ð¸ÑÑÑÐ¸ÑÐ¾Ð²Ð°Ð½Ð¾ ${totalRegs} Ð½Ð¾Ð²ÑÑ Ð¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÐµÐ»ÐµÐ¹, Ð¸Ð· ÐºÐ¾ÑÐ¾ÑÑÑ ${totalFD} ÑÐ¾Ð²ÐµÑÑÐ¸Ð»Ð¸ Ð¿ÐµÑÐ²ÑÐ¹ Ð¿Ð»Ð°ÑÑÐ¶, ÑÑÐ¾ Ð¾Ð±ÐµÑÐ¿ÐµÑÐ¸Ð²Ð°ÐµÑ ${convStatus} (${avgConv.toFixed(1)}%). ${marginStatus} â ÑÐ¾Ð¾ÑÐ½Ð¾ÑÐµÐ½Ð¸Ðµ NGR Ðº GGR ÑÐ¾ÑÑÐ°Ð²Ð»ÑÐµÑ ${margin.toFixed(1)}%.`;
     }
 
     function setGlobalPeriod(period) {
@@ -1423,7 +1427,7 @@
       updateKPIs(period);
       updateGlobalSummary(period);
     
-        generateAIAnalysis(filterData(period));
+        // AI via button
       }
 
     function setPeriod(chartIndex, period) {
@@ -1442,10 +1446,10 @@
 
         let value;
         if (chartIndex === 0) value = filtered[0]?.regs ?? 0;
-        else if (chartIndex === 1) value = '€' + formatEUR(filtered[0]?.fd_sum ?? 0);
-        else if (chartIndex === 2) value = '€' + formatEUR((filtered[0]?.deps ?? 0) - (filtered[0]?.wdraw ?? 0));
-        else if (chartIndex === 3) value = '€' + formatEUR(filtered[0]?.t_ggr ?? 0);
-        else if (chartIndex === 4) value = '€' + formatEUR(filtered[0]?.t_ggr ?? 0);
+        else if (chartIndex === 1) value = 'â¬' + formatEUR(filtered[0]?.fd_sum ?? 0);
+        else if (chartIndex === 2) value = 'â¬' + formatEUR((filtered[0]?.deps ?? 0) - (filtered[0]?.wdraw ?? 0));
+        else if (chartIndex === 3) value = 'â¬' + formatEUR(filtered[0]?.t_ggr ?? 0);
+        else if (chartIndex === 4) value = 'â¬' + formatEUR(filtered[0]?.t_ggr ?? 0);
         else if (chartIndex === 5) value = (filtered[0]?.fd_regs ?? 0).toFixed(2) + '%';
 
         document.getElementById(`yesterday-value-${chartIndex}`).textContent = value;
@@ -1466,7 +1470,7 @@
         } else if (chartIndex === 1) {
           newData = [
             { label: 'Deposit Count', data: filtered.map(d => d.fd_count), backgroundColor: 'rgba(245, 158, 11, 0.7)', borderColor: '#f59e0b', borderWidth: 0, yAxisID: 'y' },
-            { label: 'Deposit Sum (€)', data: filtered.map(d => d.fd_sum), type: 'line', borderColor: '#f43f5e', backgroundColor: 'transparent', borderWidth: 2, tension: 0.4, pointRadius: 3, yAxisID: 'y1' }
+            { label: 'Deposit Sum (â¬)', data: filtered.map(d => d.fd_sum), type: 'line', borderColor: '#f43f5e', backgroundColor: 'transparent', borderWidth: 2, tension: 0.4, pointRadius: 3, yAxisID: 'y1' }
           ];
           updateTechnicalAnalysis(chartIndex, filtered.map(d => d.fd_sum));
         } else if (chartIndex === 2) {
@@ -1549,36 +1553,43 @@
         DATA_SOURCE = 'live';
       }
       initDashboard();
-        generateAIAnalysis(DATA);
+        initAIButtons();
     });
   
     // === DYNAMIC AI ===
     var _aB="https://script.google"+".com/macros/s/";
     var _aK=["AKfycbydXYcM59QD1","QG9MqNCuZkh2c5JV","VQ6gYxdxv40c5YrR","zrqex6lbyDf3spY_","2CDJsrA"].join("");
     var AI_P=_aB+_aK+"/exec";
-    async function generateAIAnalysis(data){
-      var bl=document.querySelectorAll(".ai-analysis");
-      if(!bl.length||!data.length)return;
-      bl.forEach(function(b){var p=b.querySelector("p");if(p)p.textContent="\u0413\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f AI..."});
+    function initAIButtons(){
+      document.querySelectorAll(".ai-analysis").forEach(function(block,idx){
+        if(block.querySelector(".ai-update-btn"))return;
+        var btn=document.createElement("button");
+        btn.className="ai-update-btn";
+        btn.innerHTML="\u{1F504} \u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C AI";
+        btn.onclick=function(){updateSingleAI(block,idx,btn)};
+        block.appendChild(btn);
+      });
+    }
+
+    async function updateSingleAI(block,idx,btn){
+      var p=block.querySelector("p");
+      btn.disabled=true;btn.innerHTML="\u23F3 \u0413\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F...";
+      if(p)p.style.opacity="0.5";
+      var data=DATA;
+      var section=block.closest(".chart-section");
+      if(section){var ab=section.querySelector(".filter-btn.active");if(ab){var t=ab.textContent.trim();if(t==="7d")data=filterData("7d");else if(t==="30d")data=filterData("30d");else if(t.indexOf("ester")>-1||t.indexOf("\u0447\u0435\u0440\u0430")>-1)data=filterData("yesterday");}}
+      if(!data||!data.length)data=DATA;
       var f=data[0],l=data[data.length-1];
       var sm=function(fn){return data.reduce(function(a,d){return a+fn(d)},0).toFixed(0)};
       var av=function(fn){return(data.reduce(function(a,d){return a+fn(d)},0)/data.length).toFixed(1)};
-      var inf=[
-        "UserAcq: regs/day="+av(function(d){return d.regs})+" max="+Math.max.apply(null,data.map(function(d){return d.regs})),
-        "FD: count="+sm(function(d){return d.fd_count})+" sum="+sm(function(d){return d.fd_sum})+"EUR conv="+av(function(d){return d.fd_regs})+"%",
-        "CashFlow: deps="+sm(function(d){return d.deps})+" wdraw="+sm(function(d){return d.wdraw}),
-        "GGR: casino="+sm(function(d){return d.c_ggr})+" sport="+sm(function(d){return d.s_ggr})+" total="+sm(function(d){return d.t_ggr}),
-        "NGR: GGR="+sm(function(d){return d.t_ggr})+" NGR="+sm(function(d){return d.t_ngr}),
-        "Conv: fdRegs="+av(function(d){return d.fd_regs})+"% regs="+sm(function(d){return d.regs})
-      ];
-      var pr="iGaming analytics. Period:"+f.date+" to "+l.date+" ("+data.length+"d). 6 SHORT paragraphs(2-3 sent,Russian): "+inf.join("; ")+". Return ONLY JSON array of 6 strings.";
-      try{
-        var r=await fetch(AI_P,{method:"POST",body:JSON.stringify({prompt:pr}),headers:{"Content-Type":"text/plain;charset=utf-8"}});
-        var d=await r.json();
-        var raw=d.result.replace(/```json\n?/g,"").replace(/```\n?/g,"").trim(); var tx=JSON.parse(raw);
-        bl.forEach(function(b,i){var p=b.querySelector("p");if(p&&tx[i])p.textContent=tx[i]});
-      }catch(e){console.warn("AI err:",e)}
+      var topics=["User Acquisition: regs/day="+av(function(d){return d.regs})+" max="+Math.max.apply(null,data.map(function(d){return d.regs})),"First Deposits: count="+sm(function(d){return d.fd_count})+" sum="+sm(function(d){return d.fd_sum})+"EUR","Cash Flow: deps="+sm(function(d){return d.deps})+" wdraw="+sm(function(d){return d.wdraw}),"GGR: casino="+sm(function(d){return d.c_ggr})+" sport="+sm(function(d){return d.s_ggr}),"NGR: GGR="+sm(function(d){return d.t_ggr})+" NGR="+sm(function(d){return d.t_ngr}),"Conversion: fdRegs="+av(function(d){return d.fd_regs})+"%"];
+      var pr="iGaming analytics. "+f.date+" to "+l.date+" ("+data.length+"d). 1 SHORT paragraph (2-3 sent, Russian): "+(topics[idx]||topics[0])+". Plain text only.";
+      try{var r=await fetch(AI_P,{method:"POST",body:JSON.stringify({prompt:pr}),headers:{"Content-Type":"text/plain;charset=utf-8"}});var d=await r.json();var txt=d.result||"";txt=txt.replace(/```[a-z]*\n?/g,"").replace(/```/g,"").trim();if(p){p.textContent=txt;p.style.opacity="1";}}catch(e){if(p){p.textContent="Error: "+e.message;p.style.opacity="1";}}
+      btn.disabled=false;btn.innerHTML="\u{1F504} \u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C AI";
     }
+
+    async function generateAIAnalysis(data){initAIButtons();}
+
     </script>
 </body>
 </html>
