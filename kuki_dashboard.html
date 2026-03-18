@@ -1569,10 +1569,8 @@
     async function updateOneAI(block,idx,btn){
       var p=block.querySelector("p");btn.disabled=true;btn.textContent="\u23F3 Loading...";
       if(p)p.style.opacity="0.5";var data=DATA;
-      var sec=block.closest(".chart-section");
-      if(sec){var ab=sec.querySelector(".filter-btn.active");if(ab){var t=ab.textContent.trim();
-        if(t==="7d")data=filterData("7d");else if(t==="30d")data=filterData("30d");
-        else if(t.indexOf("ester")>-1)data=filterData("yesterday");}}
+      var sec=block.closest(".chart-section")||block.parentElement.parentElement;
+      if(sec){var ab=sec.querySelector("button.active[onclick]");if(ab){var oc=ab.getAttribute("onclick")||"";if(oc.indexOf("yesterday")>-1)data=filterData("yesterday");else if(oc.indexOf("7d")>-1)data=filterData("7d");else if(oc.indexOf("30d")>-1)data=filterData("30d");}}
       if(!data||!data.length)data=DATA;var f=data[0],l=data[data.length-1];
       var sm=function(fn){return data.reduce(function(a,d){return a+fn(d)},0).toFixed(0)};
       var av=function(fn){return(data.reduce(function(a,d){return a+fn(d)},0)/data.length).toFixed(1)};
