@@ -38,6 +38,41 @@
         blocks.forEach((b, i) => { const p = b.querySelector('p'); if (p && texts[i]) p.textContent = texts[i]; });
       } catch(e) { console.warn('AI analysis error:', e); }
     }
+\n    
+
+    // ===================== DYNAMIC AI ANALYSIS =====================
+    const _aiBase = 'https://script.google' + '.com/macros/s/';
+    const _aiId = ['AKfycbydXYcM59QD1','QG9MqNCuZkh2c5JV','VQ6gYxdxv40c5YrR','zrqex6lbyDf3spY_','2CDJsrA'].join('');
+    const AI_PROXY = _aiBase + _aiId + '/exec';
+    
+    async function generateAIAnalysis(data) {
+      const blocks = document.querySelectorAll('.ai-analysis');
+      if (!blocks.length || !data.length) return;
+      
+      blocks.forEach(b => { const p = b.querySelector('p'); if (p) p.textContent = '\u0413\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f AI-\u0430\u043d\u0430\u043b\u0438\u0437\u0430...'; });
+      
+      const first = data[0], last = data[data.length-1];
+      const avg = (arr, fn) => (arr.reduce((s,d) => s+fn(d), 0) / arr.length).toFixed(1);
+      const sum = (arr, fn) => arr.reduce((s,d) => s+fn(d), 0).toFixed(0);
+      
+      const sections = [
+        'User Acquisition: regs/day avg=' + avg(data,d=>d.regs) + ' max=' + Math.max(...data.map(d=>d.regs)) + ' unique=' + avg(data,d=>d.unique),
+        'First Deposits: count=' + sum(data,d=>d.fd_count) + ' sum=' + sum(data,d=>d.fd_sum) + 'EUR conv=' + avg(data,d=>d.fd_regs) + '%',
+        'Cash Flow: deps=' + sum(data,d=>d.deps) + ' wdraw=' + sum(data,d=>d.wdraw) + ' net=' + (data.reduce((s,d)=>s+d.deps-d.wdraw,0)).toFixed(0),
+        'GGR: casino=' + sum(data,d=>d.c_ggr) + ' sport=' + sum(data,d=>d.s_ggr) + ' total=' + sum(data,d=>d.t_ggr),
+        'NGR: GGR=' + sum(data,d=>d.t_ggr) + ' NGR=' + sum(data,d=>d.t_ngr),
+        'Conversion: fdRegs=' + avg(data,d=>d.fd_regs) + '% regs=' + sum(data,d=>d.regs) + ' fd=' + sum(data,d=>d.fd_count)
+      ];
+      
+      const prompt = 'iGaming analytics. Period: ' + first.date + ' to ' + last.date + ' (' + data.length + ' days). Generate 6 SHORT paragraphs (2-3 sentences each, in Russian) for sections: ' + sections.join('; ') + '. Return ONLY JSON array of 6 strings.';
+      
+      try {
+        const r = await fetch(AI_PROXY, {method:'POST', body:JSON.stringify({prompt}), headers:{'Content-Type':'text/plain;charset=utf-8'}});
+        const d = await r.json();
+        const texts = JSON.parse(d.result);
+        blocks.forEach((b, i) => { const p = b.querySelector('p'); if (p && texts[i]) p.textContent = texts[i]; });
+      } catch(e) { console.warn('AI error:', e); }
+    }
 \n    </script>
   <style>
     * {
@@ -1579,7 +1614,7 @@
         DATA = liveData;
         DATA_SOURCE = 'live';
       }
-      initDashboard();\n        generateAIAnalysis(DATA);
+      initDashboard();\n        generateAIAnalysis(DATA);\n        generateAIAnalysis(DATA);
     });
   </script>
 </body>
