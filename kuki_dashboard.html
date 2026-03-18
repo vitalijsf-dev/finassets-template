@@ -1547,7 +1547,36 @@
         DATA_SOURCE = 'live';
       }
       initDashboard();
+        generateAIAnalysis(DATA);
     });
-  </script>
+  
+    // === DYNAMIC AI ===
+    var _aB="https://script.google"+".com/macros/s/";
+    var _aK=["AKfycbydXYcM59QD1","QG9MqNCuZkh2c5JV","VQ6gYxdxv40c5YrR","zrqex6lbyDf3spY_","2CDJsrA"].join("");
+    var AI_P=_aB+_aK+"/exec";
+    async function generateAIAnalysis(data){
+      var bl=document.querySelectorAll(".ai-analysis");
+      if(!bl.length||!data.length)return;
+      bl.forEach(function(b){var p=b.querySelector("p");if(p)p.textContent="\u0413\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f AI..."});
+      var f=data[0],l=data[data.length-1];
+      var sm=function(fn){return data.reduce(function(a,d){return a+fn(d)},0).toFixed(0)};
+      var av=function(fn){return(data.reduce(function(a,d){return a+fn(d)},0)/data.length).toFixed(1)};
+      var inf=[
+        "UserAcq: regs/day="+av(function(d){return d.regs})+" max="+Math.max.apply(null,data.map(function(d){return d.regs})),
+        "FD: count="+sm(function(d){return d.fd_count})+" sum="+sm(function(d){return d.fd_sum})+"EUR conv="+av(function(d){return d.fd_regs})+"%",
+        "CashFlow: deps="+sm(function(d){return d.deps})+" wdraw="+sm(function(d){return d.wdraw}),
+        "GGR: casino="+sm(function(d){return d.c_ggr})+" sport="+sm(function(d){return d.s_ggr})+" total="+sm(function(d){return d.t_ggr}),
+        "NGR: GGR="+sm(function(d){return d.t_ggr})+" NGR="+sm(function(d){return d.t_ngr}),
+        "Conv: fdRegs="+av(function(d){return d.fd_regs})+"% regs="+sm(function(d){return d.regs})
+      ];
+      var pr="iGaming analytics. Period:"+f.date+" to "+l.date+" ("+data.length+"d). 6 SHORT paragraphs(2-3 sent,Russian): "+inf.join("; ")+". Return ONLY JSON array of 6 strings.";
+      try{
+        var r=await fetch(AI_P,{method:"POST",body:JSON.stringify({prompt:pr}),headers:{"Content-Type":"text/plain;charset=utf-8"}});
+        var d=await r.json();
+        var tx=JSON.parse(d.result);
+        bl.forEach(function(b,i){var p=b.querySelector("p");if(p&&tx[i])p.textContent=tx[i]});
+      }catch(e){console.warn("AI err:",e)}
+    }
+    </script>
 </body>
 </html>
