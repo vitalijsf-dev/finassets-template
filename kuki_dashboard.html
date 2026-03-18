@@ -573,7 +573,7 @@
     <!-- Header -->
     <div class="header">
       <h1>Kuki Analytics Dashboard 2026</h1>
-      <p>Platform Performance Overview • Feb—Mar 2026</p>
+      <p id="header-period">Platform Performance Overview • Feb—Mar 2026</p>
     </div>
 
     <!-- KPI Cards -->
@@ -1515,6 +1515,20 @@
       updateGlobalSummary('all');
     
       updateFooterDates();
+      // Update header period dynamically
+      if (DATA.length > 0) {
+        const hdr = document.getElementById('header-period');
+        if (hdr) {
+          const f = DATA[0].date, l = DATA[DATA.length-1].date;
+          const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+          const fd = new Date(f+'T00:00:00'), ld = new Date(l+'T00:00:00');
+          const fmStr = months[fd.getMonth()], lmStr = months[ld.getMonth()];
+          const period = fd.getFullYear() === ld.getFullYear() && fd.getMonth() === ld.getMonth()
+            ? fmStr + ' ' + fd.getFullYear()
+            : fmStr + '\u2013' + lmStr + ' ' + ld.getFullYear();
+          hdr.textContent = 'Platform Performance Overview \u2022 ' + period + ' (' + DATA.length + ' days)';
+        }
+      }
       showDataSourceBadge(DATA_SOURCE, DATA.length);
     }
 
