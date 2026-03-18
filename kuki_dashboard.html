@@ -1422,7 +1422,9 @@
       // Update KPIs and global summary for the selected period
       updateKPIs(period);
       updateGlobalSummary(period);
-    }
+    
+        generateAIAnalysis(filterData(period));
+      }
 
     function setPeriod(chartIndex, period) {
       const filtered = filterData(period);
