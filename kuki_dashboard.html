@@ -1516,7 +1516,7 @@
     
       updateFooterDates();
       // Update summary period
-      const sp = document.getElementById('summary-period');
+      const sp = document.getElementById('summary-period-label');
       if (sp && DATA.length > 0) {
         const f = DATA[0].date, l = DATA[DATA.length-1].date;
         const fmt = d => { const [y,m,dd] = d.split('-'); return dd+'.'+m+'.'+y; };
