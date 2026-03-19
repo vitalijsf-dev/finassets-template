@@ -1033,7 +1033,7 @@
     }
 
     function filterData(period) {
-      const today = new Date('2026-03-16');
+      const today = new Date(DATA[DATA.length-1].date + 'T12:00:00');
       const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
       const last7 = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
       const last30 = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
